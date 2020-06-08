@@ -5,20 +5,26 @@ import InputRange from 'react-input-range';
 import axios from 'axios';
 
 import StreamButton from '../components/StreamButton';
+import GenreButton from '../components/GenreButton';
 
 const Header = styled.header`
     background: transparent;
     color: white;
     margin: 0 1em;
     padding: 0.25em 1em;
-    font-size: 36px;
+    font-size: 52px;
+    font-weight: bold;
 `
 const Question = styled.div`
     color: black;
     margin: 0 1em;
-    padding: 0.25em 1em;
-    font-size: 22px;
+    padding: 20px 0px 20px 0px;
+    font-size: 30px;
     color: white;
+`
+const Options = styled.div`
+    justify-content: center;
+    display: flex;
 `
 
 const StreamPair = () => {
@@ -33,14 +39,22 @@ const StreamPair = () => {
         {
             poster: "https://m.media-amazon.com/images/M/MV5BZGExYjQzNTQtNGNhMi00YmY1LTlhY2MtMTRjODg3MjU4YTAyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
             id: 2,
-        }
+        },
+        {
+            poster: "https://m.media-amazon.com/images/M/MV5BZGExYjQzNTQtNGNhMi00YmY1LTlhY2MtMTRjODg3MjU4YTAyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
+            id: 2,
+        },
+        {
+            poster: "https://m.media-amazon.com/images/M/MV5BZGExYjQzNTQtNGNhMi00YmY1LTlhY2MtMTRjODg3MjU4YTAyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
+            id: 2,
+        },
     ]
 
-    const [val, setVal] = useState({ min: 8, max: 20})
+    const [maxPrice, setMaxPrice] = useState({ min: 8, max: 20})
     const [shows, setShows] = useState([{
         poster: "https://m.media-amazon.com/images/M/MV5BZGExYjQzNTQtNGNhMi00YmY1LTlhY2MtMTRjODg3MjU4YTAyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg"
     }])
-    let genres = ['Action', 'Romance', 'Thriller', 'Drama', 'Fantasy', 'Horror', 'Western', 'Fantasy', 'Mystery'];
+    let genres = ['Action', 'Romance', 'Thriller', 'Drama', 'Fantasy', 'Horror', 'Western', 'Genre', 'Mystery', 'Hallmark', 'Informative', 'Sad', 'Cat', 'Only'];
 
     useEffect(() => {
         let netflixShows = [];
@@ -74,29 +88,33 @@ const StreamPair = () => {
     // once form is submitted, store the max value
 
     return (
-        <div style={{background: 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 3%, rgba(0,212,255,1) 100%)'}}>
+        <div style={{background: 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,149,255,1) 0%, rgba(21,196,196,1) 100%)'}}>
             <div style={{ justifyContent: 'center', display: 'flex' }}>
                 <Header>StreamPair</Header>
             </div>
             <Question>Select up to three of your favorite genres.</Question>
-            <div style={{justifyContent: 'space-around', display: 'flex', width: '70%'}}>
-                {genres.map(genre => 
-                    <button style={{borderRadius: 5, backgroundColor: 'white', border: 'none', width: 200, height: 60, fontSize: 18}}>{genre}</button>
-                )}
-            </div>
+            <Options>
+                <div style={{width: '60%'}} >
+                    {genres.map(genre => 
+                        <GenreButton genre={genre}/>
+                    )}
+                </div>
+            </Options>
             <Question>Select up to three of your favorite TV shows.</Question>
-            <div style={{display: 'flex', flexDirection: 'row'}}>
-                {showss.map(show => 
-                    <StreamButton onClick={showClick} poster={show.poster} id={show.id}/>    
-                )}
-            </div>
+            <Options>
+                <div style={{width: '50%'}}>
+                    {showss.map(show => 
+                        <StreamButton onClick={showClick} poster={show.poster} id={show.id}/>    
+                    )}
+                </div>
+            </Options>
             <Question>What's your price range?</Question>
             <div style={{ justifyContent: 'center', display: 'flex', width: '30%', padding: '40px 0px 40px 80px' }}>
                 <InputRange
                     maxValue={50}
                     minValue={0}
-                    value={val}
-                    onChange={value => setVal(value)}
+                    value={maxPrice}
+                    onChange={value => setMaxPrice(value)}
                 />
             </div>
         </div>
