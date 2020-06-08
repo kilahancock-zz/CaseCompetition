@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
   ipAddress: {
-    type: Number,
+    type: String,
   }
 //to be added based off of user form
 });
