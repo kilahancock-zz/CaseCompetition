@@ -1,6 +1,10 @@
 const express = require("express");
-
 const app = express();
+const db = require('./models');
+const userHandler = require('./handlers/users')
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json())
 
 app.get("/api/test", (req, res) => {
     const testObject = [
@@ -10,6 +14,8 @@ app.get("/api/test", (req, res) => {
 
     res.json(testObject);
 });
+
+app.post("/form", userHandler);
 
 const port = 5000;
 
