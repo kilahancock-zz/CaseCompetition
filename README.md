@@ -7,7 +7,6 @@
 5. mongodb; npm i mongodb
 6. mongoose; npm i mongoose
 ## To run the application
-run `npm install` from root directory
-run `npm install` from client directory
-all dependencies should be installed
-From root directory, run `npm run dev`
+1. run `npm install` from root directory
+2. run `npm install` from client directory
+3. From root directory, run `npm run dev`
