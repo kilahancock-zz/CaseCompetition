@@ -3,6 +3,7 @@ const app = express();
 const db = require('./models');
 const userHandler = require('./handlers/users')
 const bodyParser = require('body-parser');
+const fetch = require('node-fetch');
 
 app.use(bodyParser.json());
 
@@ -28,6 +29,24 @@ app.post("/api/userdata", (req, res) => {
     userData.push(user);
     res.send(user);
 }); 
+
+ app.get('/api/movies', async (req, res)  => {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+      };
+      let movies = [];
+      await fetch("https://casecomp.konnectrv.io/movie", requestOptions)
+      .then(response => response.json())
+      .then(result => {
+          movies = result;
+          console.log(movies)
+        }
+          )
+      .catch(error => console.log('error', error));
+      res.send(movies);
+})
+
 
 app.post("/form", userHandler);
 
