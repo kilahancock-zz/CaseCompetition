@@ -14,6 +14,21 @@ app.get("/api/test", (req, res) => {
     res.json(testObject);
 });
 
+const userData = [];
+app.get("/api/userdata", (req, res) => {
+    res.send(userData);
+})
+
+app.post("/api/userdata", (req, res) => {
+    const user = {
+        id: req.body.id,
+        genre: req.body.genre,
+        priceRange: req.body.priceRange
+    }
+    userData.push(user);
+    res.send(user);
+}); 
+
 app.post("/form", userHandler);
 
 const port = 5000;
