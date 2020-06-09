@@ -4,8 +4,12 @@ import "react-input-range/lib/css/index.css"
 import InputRange from 'react-input-range';
 import axios from 'axios';
 
-import StreamButton from '../components/StreamButton';
-import GenreButton from '../components/GenreButton';
+import netflix from './netflixlogo.jpeg';
+import hbo from './hbo.jpg';
+import amazon_prime from './amazon_prime.jpg';
+import StreamButton from '../components/buttons/StreamButton';
+import GenreButton from '../components/buttons/GenreButton';
+import ServiceButton from '../components/buttons/ServiceButton';
 
 const Header = styled.header`
     background: transparent;
@@ -55,30 +59,15 @@ const StreamPair = () => {
         },
     ]
 
+    let images = [{image: netflix, name: 'netflix'}, {image: amazon_prime, name: 'amazon_prime'}, {image: hbo, name: 'hbo'}];
+    const [movies, setMovies] = useState([])
+    const [hasPrevSubscription, setHasPrevSubscription] = useState(false)
+    const [prevSubscriptions, setPrevSubscriptions] = useState([])
     const [disabledButtons, setDisabledButtons] = useState({
         genreButton: false,
         streamButton: false,
         showButton: false,
         movieButton: false
-    })
-    const [results, setResults] = useState({
-        formControls: {
-            genres: {
-                0: '',
-                1: '',
-                2: ''
-            },
-            shows: {
-                0: '',
-                1: '',
-                2: ''
-            },
-            movies: {
-                0: '',
-                1: '',
-                2: ''
-            }
-        }
     })
     const [selectedGenres, setSelectedGenres] = useState([])
     const [selectedShows, setSelectedShows] = useState([])
@@ -113,14 +102,26 @@ const StreamPair = () => {
         setShows(netflixShows)
     }, [])
 
+
     useEffect(() => {
-        const fetchMovies = async () => {
-            await axios.get('/api/movies')
-            .then(res => console.log(res.data))
+        let tempMovies = [];
+
+        const fetchMovies = async (platform) => {
+            await axios.get('/api/movies/platform/' + platform)
+            .then(res => {
+                for (let i = 0; i < 3; i++)
+                    tempMovies.push(res.data[i])
+            })
+            setMovies(tempMovies)
         }
 
-        fetchMovies()
-    })
+
+        fetchMovies('netflix')
+        fetchMovies('hbo')
+        fetchMovies('amazon_prime')
+    }, [])
+
+    console.log('popular movies: ', movies)
 
     const submitForm = () => {
 
@@ -147,9 +148,11 @@ const StreamPair = () => {
         setSelectedMovies([...selectedMovies, res])
     }
 
-    console.log(selectedGenres)
-    console.log(disabledButtons)
+    const updateSubscription = (res) => {
+        setPrevSubscriptions([...prevSubscriptions, res])
+    }
 
+    console.log(prevSubscriptions)
 
     // once form is submitted, store the max value
 
@@ -170,7 +173,7 @@ const StreamPair = () => {
             <Options>
                 <div style={{width: '50%'}}>
                     {showss.map(show => 
-                        <StreamButton name={show.name} onClick={updateShows} disabled={disabledButtons.showButton} poster={show.poster} id={show.id}/>    
+                        <StreamButton height={175} name={show.name} onClick={updateShows} disabled={disabledButtons.showButton} image={show.poster} id={show.id}/>    
                     )}
                 </div>
             </Options>
@@ -178,7 +181,7 @@ const StreamPair = () => {
             <Options>
                 <div style={{width: '50%'}}>
                     {showss.map(movie => 
-                        <StreamButton name={movie.name} onClick={updateMovies} disabled={disabledButtons.movieButton} poster={movie.poster} id={movie.id}/>    
+                        <StreamButton height={175} name={movie.name} onClick={updateMovies} disabled={disabledButtons.movieButton} image={movie.poster} id={movie.id}/>    
                     )}
                 </div>
             </Options>
@@ -191,6 +194,20 @@ const StreamPair = () => {
                     onChange={value => setMaxPrice(value)}
                 />
             </div>
+            <Question>Have you been subscribed to one of these services before?</Question>
+                <Options>
+                    <div style={{width: '20%'}}>
+                        <input type="radio" value="Yes" name="service" onChange={() => setHasPrevSubscription(true)}/>Yes
+                        <input type="radio" value="No" name="service" onChange={() => setHasPrevSubscription(false)}/>No
+                    </div>
+                </Options>
+                <Options>
+                    <div>
+                        {
+                            hasPrevSubscription === true ? images.map(image => <StreamButton image={image.image} name={image.name} onClick={updateSubscription} disabled={false} height={100}/>) : <></>
+                        }
+                    </div>
+                </Options>
             <button onClick={submitForm}>SUBMIT FORM HERE</button>
         </div>
     )
