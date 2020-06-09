@@ -1,38 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
 
-.title {
-    font-size: 400%;
+.title h1{
+    color: #a4d3e6;
+    font-size: 300%;
     text-align: left;
     margin-top: 3%;
-    margin-left: 5%;
-    font-family: 'Bitter', serif;
+    margin-left: 3%;
+    font-family: 'Fjalla One', sans-serif;
     display: inline-block;
-    color: #696969;
 }
 
-.stream-btn {
+.stream Button {
     margin-top: 5%;
     margin-right: 5%;
     border: 0px;
-    font-family: 'Bitter', serif;
+    font-family: 'Fjalla One', sans-serif;
     float: right;
+    height: 40%;
+    width: 30%;
     font-size: 150%;
-    color: #fff;
+    color: #000;
+    background-color: #a4d3e6;
+}
+
+.stream Button:hover {
     background-color: #696969;
+    color: #a4d3e6;
 }
 
-.streaming {
-    border: 2px solid #a9a9a9;
-    border-radius: 10px;
-    display: inline-block;
-    margin: 1%;
-    height: 100%;
+.all {
+    background-color: #000;
+    width: 100vw;
 }
 
-body {
-    background-image: url('background.png');
-    height: 1000px; 
-    background-position: center; 
-    background-repeat: no-repeat; 
-    background-size: cover;
+.intro h4 {
+    text-align: center;
+    color: #a9a9a9;
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 175%;
+    line-height: 1.5;
+    margin-bottom: 5%;
 }
