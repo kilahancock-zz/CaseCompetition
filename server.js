@@ -46,6 +46,7 @@ app.post("/api/userdata", (req, res) => {
         }
           )
       .catch(error => console.log('error', error));
+      movies.sort((m, m2) => {return m2.popularity - m.popularity});
       res.send(movies);
 })
 
@@ -62,6 +63,7 @@ app.get('/api/shows', async (req, res) => {
         shows = result;
         console.log(shows);
     }).catch(error => console.log('error', error))
+    shows.sort((m, m2) => {return m2.popularity - m.popularity});
     res.send(shows);
 })
 
@@ -82,6 +84,7 @@ app.get('/api/movies/production/:production', async (req, res) => {
                   }
               })
           })
+          moviesByProd.sort((m, m2) => {return m2.popularity - m.popularity});
           res.send(moviesByProd);
         }
 
@@ -89,9 +92,6 @@ app.get('/api/movies/production/:production', async (req, res) => {
       
       
 })
-
-
-
 
 //GET movies by streaming platform sorted in order of popularity
 app.get('/api/movies/platform/:platform', async (req, res) => {
@@ -115,6 +115,8 @@ app.get('/api/movies/platform/:platform', async (req, res) => {
         res.send(moviesByPlatform);
     })
 })
+
+
 const port = 5000;
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
