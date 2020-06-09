@@ -48,6 +48,21 @@ app.post("/api/userdata", (req, res) => {
 })
 
 
+app.get('/api/shows', async (req, res) => {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+    let shows = [];
+    await fetch("https://casecomp.konnectrv.io/show", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        shows = result;
+        console.log(shows);
+    }).catch(error => console.log('error', error))
+    res.send(shows);
+})
+
 app.post("/form", userHandler);
 
 const port = 5000;
