@@ -9,7 +9,7 @@ const Provider = props => {
     <div className="provider" style={styling}>
     <h2>
 
-    <img alt={name} title={name} src={providerImg}></img>
+    <img className="img-provider" alt={name} title={name} src={providerImg}></img>
 
     </h2>
     <h3>{pricing}</h3>

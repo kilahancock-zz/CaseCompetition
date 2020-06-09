@@ -48,7 +48,6 @@ class Home extends Component {
                         <Modal
                             isOpen={this.state.modalIsOpen}
                             onRequestClose={() => this.setState({modalIsOpen: false})}
-                            // style={customStyles}
                             contentLabel="Example Modal"
                         >
                             <Button onClick={() => this.setState({modalIsOpen: false})} style={{backgroundColor: 'lightblue', height: 50, color: 'black', fontSize: 20}}>close</Button>
