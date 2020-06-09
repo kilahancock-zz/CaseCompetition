@@ -83,7 +83,7 @@ app.get('/api/movies/production/:production', async (req, res) => {
                       moviesByProd.push(movie);
                   }
               })
-          })
+          }).catch(error => console.log('error', error));
           moviesByProd.sort((m, m2) => {return m2.popularity - m.popularity});
           res.send(moviesByProd);
         }
@@ -109,7 +109,7 @@ app.get('/api/shows/production/:production', async (req, res) => {
                       showsByProd.push(show);
                   }
               })
-          })
+          }).catch(error => console.log('error', error));
           showsByProd.sort((s, s2) => {return s2.popularity - s.popularity});
           res.send(showsByProd);
         }
@@ -134,7 +134,7 @@ app.get('/api/movies/platform/:platform', async (req, res) => {
                     moviesByPlatform.push(movie);
                 }
             })
-        })
+        }).catch(error => console.log('error', error));
         moviesByPlatform.sort((m, m2) => {return m2.popularity - m.popularity});
         console.log(moviesByPlatform);
         res.send(moviesByPlatform);
@@ -157,10 +157,23 @@ app.get('/api/shows/platform/:platform', async (req, res) => {
                     showsByPlatform.push(show);
                 }
             })
-        })
+        }).catch(error => console.log('error', error));
         showsByPlatform.sort((s, s2) => {return s2.popularity - s.popularity});
         console.log(showsByPlatform);
         res.send(showsByPlatform);
+    })
+})
+
+//GET show or movie poster by IMDbID
+app.get('/api/poster/apikey/:apikey/IMDbID/:id', async (req, res) => {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+    await fetch(`http://www.omdbapi.com/?i=${req.params.id}&apikey=${req.params.apikey}`, requestOptions)
+    .then(res => res.json())
+    .then(result => {
+        res.send(result.Poster);
     })
 })
 

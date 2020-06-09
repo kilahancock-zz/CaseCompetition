@@ -2,33 +2,23 @@ import React, {Component} from "react";
 import '../provider.css';
 
 const Provider = props => {
-  const {name, providerImg, providerBackground, pricing, supportedDevices, link, backgroundGradient, color} = props;
-  const players = supportedDevices.map(device => (
-    <li key={device}>{device}</li>
-  ));
-  const plans = pricing.map(plan => (
-    <li key={plan}>{plan}</li>
-  ))
+  const {name, providerImg, providerBackground, pricing, link, backgroundGradient, color, blurb} = props;
 
   const styling = {backgroundImage: `url("${providerBackground}"), ${backgroundGradient}`}
   return(
-    <div class="provider" style={styling}>
+    <div className="provider" style={styling}>
     <h2>
 
     <img alt={name} title={name} src={providerImg}></img>
 
     </h2>
-    <h3>Pricing Plans</h3>
-    <ul class="plans">
-    {plans}
-    </ul>
-    <hr style={{border: `2px ${color} solid`}}class="spacer"/>
+    <h3>{pricing}</h3>
+    <hr style={{border: `2px ${color} solid`}}className="spacer"/>
     <br/>
-    <h3>Supported Devices </h3>
-    <ul class="plans">
-    {players}
+    <ul className="blurb">
+    {blurb}
     </ul>
-    <a class="btn btn-default" style={{backgroundColor: color}}href={link}>Sign Up Now</a>
+    <a className="btn btn-default" style={{backgroundColor: color}}href={link}>Sign Up Now</a>
     </div>
   )
 }
