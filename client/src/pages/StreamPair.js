@@ -62,6 +62,7 @@ const StreamPair = () => {
     ]
 
     let images = [{image: netflix, name: 'netflix'}, {image: amazon_prime, name: 'amazon_prime'}, {image: hbo, name: 'hbo'}];
+    const [showsOrMovies, setShowsOrMovies] = useState('')
     const [movies, setMovies] = useState([])
     const [shows, setShows] = useState([])
     const [hasPrevSubscription, setHasPrevSubscription] = useState(false)
@@ -70,14 +71,15 @@ const StreamPair = () => {
         genreButton: false,
         streamButton: false,
         showButton: false,
-        movieButton: false
+        movieButton: false,
+        showsOrMoviesButton: false
     })
     const [selectedGenres, setSelectedGenres] = useState([])
     const [selectedShows, setSelectedShows] = useState([])
     const [selectedMovies, setSelectedMovies] = useState([])
 
     const [maxPrice, setMaxPrice] = useState({ min: 8, max: 20})
-    let genres = ['Action', 'Romance', 'Thriller', 'Drama', 'Fantasy', 'Horror', 'Western', 'Genre', 'Mystery', 'Hallmark', 'Informative', 'Sad', 'Cat', 'Only'];
+    let genres = ['Action', 'Romance', 'Thriller', 'Drama', 'Fantasy', 'Horror', 'Western', 'Mystery', 'Informative'];
 
     // useEffect(() => {
     //     let netflixShows = [];
@@ -112,9 +114,9 @@ const StreamPair = () => {
                 for (let i = 0; i < 3; i++)
                     tempMovies.push(res.data[i])
             })
-            .then(() => {
+            .then(async () => {
                 for (const m of tempMovies) {
-                    axios.get('/api/poster/apikey/4a3b711b/IMDbID/' + m.imdb)
+                    await axios.get('/api/poster/apikey/4a3b711b/IMDbID/' + m.imdb)
                     .then(res => {
                         m['poster'] = res.data
                     })
@@ -138,9 +140,9 @@ const StreamPair = () => {
                 for (let i = 0; i < 4; i++)
                 tempShows.push(res.data[i])
             })
-            .then(() => {
+            .then(async () => {
                 for (const m of tempShows) {
-                    axios.get('/api/poster/apikey/4a3b711b/IMDbID/' + m.imdb)
+                    await axios.get('/api/poster/apikey/4a3b711b/IMDbID/' + m.imdb)
                     .then(res => {
                         m['poster'] = res.data
                     })
@@ -155,7 +157,7 @@ const StreamPair = () => {
         fetchShows('amazon_prime')
     }, [])
 
-    //console.log(movies)
+    let showsmovies = ['Shows', 'Movies']
 
     const submitForm = () => {
         let res = {
@@ -174,6 +176,8 @@ const StreamPair = () => {
                 },
                 prevSubscriptions: {
                     prevSubscriptions
+                }, showsOsMovies: {
+                    showsOrMovies
                 }
             },
             choices: {
@@ -222,6 +226,13 @@ const StreamPair = () => {
         setPrevSubscriptions([...prevSubscriptions, res])
     }
 
+    const updateShowsMovies = (res) => {
+        setDisabledButtons({...disabledButtons, showsOrMoviesButton: true})
+        setShowsOrMovies(res)
+    }
+
+    console.log(showsOrMovies)
+
     // once form is submitted, store the max value
 // 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,149,255,1) 0%, rgba(21,196,196,1) 100%)'
     return (
@@ -250,6 +261,14 @@ const StreamPair = () => {
                 <div style={{width: '50%'}}>
                     {movies.map(movie => 
                         <StreamButton streamer={movie.streaming_platform[0]} height={175} name={movie.title} onClick={updateMovies} disabled={disabledButtons.movieButton} image={movie.poster}/>    
+                    )}
+                </div>
+            </Options>
+            <Question>Do you prefer shows or movies?</Question>
+            <Options>
+                <div >
+                    {showsmovies.map(sm =>
+                        <GenreButton genre={sm} disabled={disabledButtons.showsOrMoviesButton} onClick={updateShowsMovies} name={sm}/>
                     )}
                 </div>
             </Options>
