@@ -115,10 +115,18 @@ const StreamPair = () => {
             setMovies(tempMovies)
         }
 
+        // const fetchPosters = async () => {
+        //     for (const movie of tempMovies) {
+        //         await axios.get('/api/poster/apikey/4a3b711b/IMDbID/' + movie.imdb)
+        //         .then(res => console.log(res.data))
+        //     }
+        // }
 
         fetchMovies('netflix')
-        fetchMovies('hbo')
-        fetchMovies('amazon_prime')
+        // fetchMovies('hbo')
+        // fetchMovies('amazon_prime')
+        // fetchPosters()
+
     }, [])
 
     console.log('popular movies: ', movies)
@@ -151,8 +159,6 @@ const StreamPair = () => {
     const updateSubscription = (res) => {
         setPrevSubscriptions([...prevSubscriptions, res])
     }
-
-    console.log(prevSubscriptions)
 
     // once form is submitted, store the max value
 
