@@ -19,7 +19,7 @@
     float: right;
     height: 40%;
     width: 30%;
-    font-size: 150%;
+    font-size: 100%;
     color: #000;
     background-color: #a4d3e6;
 }
@@ -30,7 +30,7 @@
 }
 
 .all {
-    background-color: #000;
+    background-color: #232324;
     width: 100vw;
 }
 
@@ -41,4 +41,11 @@
     font-size: 175%;
     line-height: 1.5;
     margin-bottom: 5%;
+    display: block;
+}
+
+@media screen and (max-width: 770px) {
+    #hero, #now {width: 90%}
+    #text {top:0; margin-top: 20%}
+    #now {top:0}
 }

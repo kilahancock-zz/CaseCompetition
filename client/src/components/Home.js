@@ -22,17 +22,17 @@ class Home extends Component {
       ))
         return (
             <Container className="all is-fluid">
-                <Columns>
+                <Columns id="header">
                     <Columns.Column className="title">
-                        <h1>StreamPair</h1>
+                        <div><h1 id="hero">StreamPair</h1></div>
                     </Columns.Column>
                     <Columns.Column className="stream">
-                        <Button>StreamPair Now!</Button>
+                        <div><Button id="now">StreamPair Now!</Button></div>
                     </Columns.Column>
                 </Columns>
                 <Columns>
                     <Columns.Column className="intro">
-                        <h4>With so many options, choosing a streaming service may seem impossible. <br/>With StreamPair, just tell us your preferences and leave the searching to us!</h4>
+                        <h4 id="text">With so many options, choosing a streaming service may seem impossible. <br/>With StreamPair, just tell us your preferences and leave the searching to us!</h4>
                     </Columns.Column>
                 </Columns>
                 <Columns style={{marginBottom: "20px"}}>
