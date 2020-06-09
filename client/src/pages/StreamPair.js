@@ -113,6 +113,15 @@ const StreamPair = () => {
         setShows(netflixShows)
     }, [])
 
+    useEffect(() => {
+        const fetchMovies = async () => {
+            await axios.get('/api/movies')
+            .then(res => console.log(res.data))
+        }
+
+        fetchMovies()
+    })
+
     const submitForm = () => {
 
     }
