@@ -31,24 +31,58 @@ const StreamPair = () => {
     let showss = [{
             poster: "https://m.media-amazon.com/images/M/MV5BZGExYjQzNTQtNGNhMi00YmY1LTlhY2MtMTRjODg3MjU4YTAyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
             id: 0,
+            name: 'Stranger Things'
         },
         {
             poster: "https://m.media-amazon.com/images/M/MV5BZGExYjQzNTQtNGNhMi00YmY1LTlhY2MtMTRjODg3MjU4YTAyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
             id: 1,
+            name: 'Stranger Things'
         },
         {
             poster: "https://m.media-amazon.com/images/M/MV5BZGExYjQzNTQtNGNhMi00YmY1LTlhY2MtMTRjODg3MjU4YTAyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
             id: 2,
+            name: 'Stranger Things'
         },
         {
             poster: "https://m.media-amazon.com/images/M/MV5BZGExYjQzNTQtNGNhMi00YmY1LTlhY2MtMTRjODg3MjU4YTAyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
             id: 2,
+            name: 'Stranger Things'
         },
         {
             poster: "https://m.media-amazon.com/images/M/MV5BZGExYjQzNTQtNGNhMi00YmY1LTlhY2MtMTRjODg3MjU4YTAyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
             id: 2,
+            name: 'Stranger Things'
         },
     ]
+
+    const [disabledButtons, setDisabledButtons] = useState({
+        genreButton: false,
+        streamButton: false,
+        showButton: false,
+        movieButton: false
+    })
+    const [results, setResults] = useState({
+        formControls: {
+            genres: {
+                0: '',
+                1: '',
+                2: ''
+            },
+            shows: {
+                0: '',
+                1: '',
+                2: ''
+            },
+            movies: {
+                0: '',
+                1: '',
+                2: ''
+            }
+        }
+    })
+    const [selectedGenres, setSelectedGenres] = useState([])
+    const [selectedShows, setSelectedShows] = useState([])
+    const [selectedMovies, setSelectedMovies] = useState([])
 
     const [maxPrice, setMaxPrice] = useState({ min: 8, max: 20})
     const [shows, setShows] = useState([{
@@ -79,11 +113,34 @@ const StreamPair = () => {
         setShows(netflixShows)
     }, [])
 
-    console.log(shows)
+    const submitForm = () => {
 
-    const showClick = () => {
-        alert('clicked')
     }
+
+    const updateGenres = (res) => {
+        if (selectedGenres.length >= 2) {
+            setDisabledButtons({...disabledButtons, genreButton: true})
+        }
+        setSelectedGenres([...selectedGenres, res])
+    }
+
+    const updateShows = (res) => {
+        if (selectedShows.length >= 2) {
+            setDisabledButtons({...disabledButtons, showButton: true})
+        }
+        setSelectedShows([...selectedShows, res])
+    }
+
+    const updateMovies = (res) => {
+        if (selectedMovies.length >= 2) {
+            setDisabledButtons({...disabledButtons, movieButton: true})
+        }
+        setSelectedMovies([...selectedMovies, res])
+    }
+
+    console.log(selectedGenres)
+    console.log(disabledButtons)
+
 
     // once form is submitted, store the max value
 
@@ -92,19 +149,27 @@ const StreamPair = () => {
             <div style={{ justifyContent: 'center', display: 'flex' }}>
                 <Header>StreamPair</Header>
             </div>
-            <Question>Select up to three of your favorite genres.</Question>
+            <Question>Select three of your favorite genres.</Question>
             <Options>
                 <div style={{width: '60%'}} >
                     {genres.map(genre => 
-                        <GenreButton genre={genre}/>
+                        <GenreButton genre={genre} disabled={disabledButtons.genreButton} onClick={updateGenres} name='genres'/>
                     )}
                 </div>
             </Options>
-            <Question>Select up to three of your favorite TV shows.</Question>
+            <Question>Select three of your favorite TV shows.</Question>
             <Options>
                 <div style={{width: '50%'}}>
                     {showss.map(show => 
-                        <StreamButton onClick={showClick} poster={show.poster} id={show.id}/>    
+                        <StreamButton name={show.name} onClick={updateShows} disabled={disabledButtons.showButton} poster={show.poster} id={show.id}/>    
+                    )}
+                </div>
+            </Options>
+            <Question>Select three of your favorite movies.</Question>
+            <Options>
+                <div style={{width: '50%'}}>
+                    {showss.map(movie => 
+                        <StreamButton name={movie.name} onClick={updateMovies} disabled={disabledButtons.movieButton} poster={movie.poster} id={movie.id}/>    
                     )}
                 </div>
             </Options>
@@ -117,6 +182,7 @@ const StreamPair = () => {
                     onChange={value => setMaxPrice(value)}
                 />
             </div>
+            <button onClick={submitForm}>SUBMIT FORM HERE</button>
         </div>
     )
 }
