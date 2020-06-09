@@ -142,6 +142,39 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "GET Number of Movies by Streaming Platform",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Number of Shows by Streaming Platform",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}/api/shows/number/platform/{{platform}}",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"shows",
+						"number",
+						"platform",
+						"{{platform}}"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
