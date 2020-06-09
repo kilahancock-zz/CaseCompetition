@@ -165,7 +165,7 @@ const StreamPair = () => {
     // once form is submitted, store the max value
 // 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,149,255,1) 0%, rgba(21,196,196,1) 100%)'
     return (
-        <div class="form" style={{background: '#f8f8f8'}}>
+        <div className="form" style={{background: '#f8f8f8'}}>
             <div style={{ justifyContent: 'center', display: 'flex' }}>
                 <Header>StreamPair</Header>
             </div>
@@ -185,7 +185,7 @@ const StreamPair = () => {
                     )}
                 </div>
             </Options>
-            <Question class="question">Select three of your favorite movies:</Question>
+            <Question className="question">Select three of your favorite movies:</Question>
             <Options>
                 <div style={{width: '50%'}}>
                     {showss.map(movie =>
@@ -205,10 +205,10 @@ const StreamPair = () => {
             </div>
             <Question>Have you been subscribed to one of these services before?</Question>
                 <Options>
-                    <div class="radio-button" style={{width: '40%'}}>
-                        <label for="name">
+                    <div className="radio-button" style={{width: '40%'}}>
+                        <label htmlFor="name">
                         <input id="name" type="radio" value="Yes" name="service" onChange={() => setHasPrevSubscription(true)}/>&nbsp;Yes</label>
-                        <label for="service">
+                        <label htmlFor="service">
                         <input id="service" type="radio" value="No" name="service" onChange={() => setHasPrevSubscription(false)}/>&nbsp;No</label>
                     </div>
                 </Options>
@@ -219,7 +219,7 @@ const StreamPair = () => {
                         }
                     </div>
                 </Options>
-            <div class="submit-button"><button class="btn btn-success" onClick={submitForm}>Find your provider!</button></div>
+            <div className="submit-button"><button className="btn btn-success" onClick={submitForm}>Find your provider!</button></div>
         </div>
     )
 }
