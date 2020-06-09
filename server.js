@@ -67,7 +67,7 @@ app.get('/api/shows', async (req, res) => {
     res.send(shows);
 })
 
-//GET movie by production company
+//GET movie by production company sorted by popularity
 app.get('/api/movies/production/:production', async (req, res) => {
     var requestOptions = {
         method: 'GET',
@@ -92,6 +92,31 @@ app.get('/api/movies/production/:production', async (req, res) => {
       
       
 })
+
+//GET shows by production company sorted by popularity
+app.get('/api/shows/production/:production', async (req, res) => {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+    await fetch("https://casecomp.konnectrv.io/show", requestOptions)
+      .then(response => response.json())
+      .then(result => {
+          let showsByProd = [];
+          result.forEach(show => {
+              show.production_companies.forEach(company => {
+                  if (company.toLowerCase() == req.params.production.toLowerCase()) {
+                      showsByProd.push(show);
+                  }
+              })
+          })
+          showsByProd.sort((s, s2) => {return s2.popularity - s.popularity});
+          res.send(showsByProd);
+        }
+
+          )
+})
+
 
 //GET movies by streaming platform sorted in order of popularity
 app.get('/api/movies/platform/:platform', async (req, res) => {
