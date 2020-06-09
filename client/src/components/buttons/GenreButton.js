@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import '../../genrebutton.css';
 
 const StreamButton = ({ genre, onClick, disabled, name }) => {
     const [backgroundColor, setBackgroundColor] = useState('white');
@@ -16,7 +17,7 @@ const StreamButton = ({ genre, onClick, disabled, name }) => {
 
     return (
         <>
-            <button disabled={disabled} onClick={toggleColor} style={{opacity: opacity, border: 'none', cursor: 'pointer', overflow: 'hidden', outline: 'none', boxShadow: 'none', borderRadius: 5, backgroundColor: backgroundColor, border: 'none', width: 125, height: 100, color: color, fontSize: 20, margin: 10}}>
+            <button className="genre-button" disabled={disabled} onClick={toggleColor} style={{opacity: opacity, border: 'none', cursor: 'pointer', overflow: 'hidden', outline: 'none', boxShadow: 'none', borderRadius: 5, backgroundColor: backgroundColor, border: 'none', width: 125, height: 100, color: color, fontSize: 20, margin: 10}}>
                 {genre}
             </button>
         </>

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import "react-input-range/lib/css/index.css"
 import InputRange from 'react-input-range';
 import axios from 'axios';
-
+import '../streampair.css';
 import netflix from './netflixlogo.jpeg';
 import hbo from './hbo.jpg';
 import amazon_prime from './amazon_prime.jpg';
@@ -13,22 +13,24 @@ import ServiceButton from '../components/buttons/ServiceButton';
 
 const Header = styled.header`
     background: transparent;
-    color: white;
+    color: black;
     margin: 0 1em;
     padding: 0.25em 1em;
     font-size: 52px;
-    font-weight: bold;
+    font-weight: 500;
+    margin-bottom: 20px;
 `
 const Question = styled.div`
     color: black;
     margin: 0 1em;
     padding: 20px 0px 20px 0px;
     font-size: 30px;
-    color: white;
+    color: black;
 `
 const Options = styled.div`
     justify-content: center;
     display: flex;
+    margin: 40px 0;
 `
 
 const StreamPair = () => {
@@ -221,21 +223,21 @@ const StreamPair = () => {
     }
 
     // once form is submitted, store the max value
-
+// 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,149,255,1) 0%, rgba(21,196,196,1) 100%)'
     return (
-        <div style={{background: 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,149,255,1) 0%, rgba(21,196,196,1) 100%)'}}>
+        <div className="form" style={{background: '#f8f8f8'}}>
             <div style={{ justifyContent: 'center', display: 'flex' }}>
                 <Header>StreamPair</Header>
             </div>
-            <Question>Select three of your favorite genres.</Question>
+            <Question>Select three of your favorite genres:</Question>
             <Options>
                 <div style={{width: '60%'}} >
-                    {genres.map(genre => 
+                    {genres.map(genre =>
                         <GenreButton genre={genre} disabled={disabledButtons.genreButton} onClick={updateGenres} name='genres'/>
                     )}
                 </div>
             </Options>
-            <Question>Select three of your favorite TV shows.</Question>
+            <Question>Select three of your favorite TV shows:</Question>
             <Options>
                 <div style={{width: '50%'}}>
                     {shows.map(show => 
@@ -243,7 +245,7 @@ const StreamPair = () => {
                     )}
                 </div>
             </Options>
-            <Question>Select three of your favorite movies.</Question>
+            <Question className="question">Select three of your favorite movies:</Question>
             <Options>
                 <div style={{width: '50%'}}>
                     {movies.map(movie => 
@@ -251,20 +253,23 @@ const StreamPair = () => {
                     )}
                 </div>
             </Options>
-            <Question>What's your price range?</Question>
-            <div style={{ justifyContent: 'center', display: 'flex', width: '30%', padding: '40px 0px 40px 80px' }}>
+            <Question >What's your price range?</Question>
+            <div style={{ justifyContent: 'center', display: 'flex', width: '50%', padding: '40px 0px 40px 80px'}}>
                 <InputRange
                     maxValue={50}
                     minValue={0}
                     value={maxPrice}
-                    onChange={value => setMaxPrice(value)}
+                    onChange={value => setMaxPrice(value)
+                    }
                 />
             </div>
             <Question>Have you been subscribed to one of these services before?</Question>
                 <Options>
-                    <div style={{width: '20%'}}>
-                        <input type="radio" value="Yes" name="service" onChange={() => setHasPrevSubscription(true)}/>Yes
-                        <input type="radio" value="No" name="service" onChange={() => setHasPrevSubscription(false)}/>No
+                    <div className="radio-button" style={{width: '40%'}}>
+                        <label htmlFor="name">
+                        <input id="name" type="radio" value="Yes" name="service" onChange={() => setHasPrevSubscription(true)}/>&nbsp;Yes</label>
+                        <label htmlFor="service">
+                        <input id="service" type="radio" value="No" name="service" onChange={() => setHasPrevSubscription(false)}/>&nbsp;No</label>
                     </div>
                 </Options>
                 <Options>
@@ -274,7 +279,7 @@ const StreamPair = () => {
                         }
                     </div>
                 </Options>
-            <button onClick={submitForm}>SUBMIT FORM HERE</button>
+            <div className="submit-button"><button className="btn btn-success" onClick={submitForm}>Find your provider!</button></div>
         </div>
     )
 }

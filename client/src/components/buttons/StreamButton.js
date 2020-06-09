@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import '../../streambutton.css'
 
 const StreamButton = ({ image, id, onClick, disabled, name, height, streamer }) => {
     const [opacity, setOpacity] = useState(1);
@@ -11,8 +12,8 @@ const StreamButton = ({ image, id, onClick, disabled, name, height, streamer }) 
 
     return (
         <>
-            <button disabled={disabled} onClick={toggleOpacity} style={{border: 'none', backgroundColor: 'transparent', cursor: 'pointer', overflow: 'hidden', outline: 'none', boxShadow: 'none'}}>
-                <img src={image} alt="Snow" height={height} style={{borderRadius: 20, padding: '2px 5px 2px 5px', opacity: opacity}}/>
+            <button className="stream-button" disabled={disabled} onClick={toggleOpacity} style={{border: 'none', backgroundColor: 'transparent', cursor: 'pointer', overflow: 'hidden', outline: 'none', boxShadow: 'none'}}>
+                <img src={image} alt="Snow" height={height} style={{borderRadius: 27, padding: '2px 5px 2px 5px', opacity: opacity}}/>
             </button>
         </>
     )
