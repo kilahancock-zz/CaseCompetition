@@ -116,6 +116,29 @@ app.get('/api/movies/platform/:platform', async (req, res) => {
     })
 })
 
+//GET shows by streaming platform sorted in order of popularity
+app.get('/api/shows/platform/:platform', async (req, res) => {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+    await fetch("https://casecomp.konnectrv.io/show", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        let showsByPlatform = [];
+        result.forEach(show => {
+            show.streaming_platform.forEach(platform => {
+                if (platform.toLowerCase() == req.params.platform.toLowerCase()) {
+                    showsByPlatform.push(show);
+                }
+            })
+        })
+        showsByPlatform.sort((s, s2) => {return s2.popularity - s.popularity});
+        console.log(showsByPlatform);
+        res.send(showsByPlatform);
+    })
+})
+
 
 const port = 5000;
 
