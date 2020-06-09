@@ -3,6 +3,7 @@
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css);
 
 .provider{
+  height: 100%;
    font-family: 'Fjalla One', sans-serif;
    padding: 0 1%;
    display: flex;

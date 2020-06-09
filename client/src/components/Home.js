@@ -35,7 +35,7 @@ class Home extends Component {
                         <h4>With so many options, choosing a streaming service may seem impossible. <br/>With StreamPair, just tell us your preferences and leave the searching to us!</h4>
                     </Columns.Column>
                 </Columns>
-                <Columns>
+                <Columns style={{marginBottom: "20px"}}>
                 {banners}
                 </Columns>
             </Container>
