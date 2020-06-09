@@ -189,7 +189,7 @@ app.get('/api/movies/number/platform/:platform', async (req, res) => {
     .then(response => response.json())
     .then(result => {
         numMovies = {
-            'MovieAmount': result.length
+            'Amount': result.length
         };
         res.send(numMovies)
         
@@ -206,12 +206,41 @@ app.get('/api/shows/number/platform/:platform', async (req, res) => {
     .then(response => response.json())
     .then(result => {
         numShows = {
-            'ShowsAmount': result.length
+            'Amount': result.length
         };
         res.send(numShows)
         
     })
 })
+
+//GET all movies and shows
+app.get('/api/all', async (req, res) => {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+    let movies = [];
+    await fetch("https://casecomp.konnectrv.io/movie", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        movies = result;
+    })
+    movies.sort((m, m2) => {return m2.popularity - m.popularity});
+
+    let shows = [];
+    await fetch("https://casecomp.konnectrv.io/show", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        shows = result;
+    }).catch(error => console.log('error', error))
+    shows.sort((s, s2) => {return s2.popularity - s.popularity});
+
+    moviesAndShows = movies.concat(shows);
+
+    res.send(moviesAndShows);
+    
+}) 
+
 
 const port = 5000;
 
