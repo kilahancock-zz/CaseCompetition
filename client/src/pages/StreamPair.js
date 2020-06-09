@@ -81,7 +81,7 @@ const StreamPair = () => {
     const [selectedMovies, setSelectedMovies] = useState([])
 
     const [maxPrice, setMaxPrice] = useState({ min: 8, max: 20})
-    let genres = ['Action', 'Romance', 'Thriller', 'Drama', 'Fantasy', 'Horror', 'Western', 'Mystery', 'Informative'];
+    let genres = ['Action', 'Romance', 'Thriller', 'Drama', 'Fantasy', 'Horror', 'Western', 'Mystery'];
 
     // useEffect(() => {
     //     let netflixShows = [];
@@ -96,7 +96,7 @@ const StreamPair = () => {
     //         }
     //     }).then(() => {
     //         for (const show of netflixShows) {
-    //             // console.log(show.imdb)      
+    //             // console.log(show.imdb)
     //             const url = 'http://www.omdbapi.com/?i=' + show.imdb + '&apikey=4a3b711b';
     //             axios.get(url)
     //             .then(response => { show.poster  = response.data.Poster })
@@ -242,8 +242,8 @@ const StreamPair = () => {
             <Options>
             {isLoading ? <img src={loading} height={50}/> : (
                 <div style={{width: '50%'}}>
-                    {shows.map(show => 
-                        <StreamButton streamer={show.streaming_platform[0]} height={175} name={show.title} onClick={updateShows} disabled={disabledButtons.showButton} image={show.poster} id={show.id}/>    
+                    {shows.map(show =>
+                        <StreamButton streamer={show.streaming_platform[0]} height={175} name={show.title} onClick={updateShows} disabled={disabledButtons.showButton} image={show.poster} id={show.id}/>
                     )}
                 </div>
             )}
@@ -252,8 +252,8 @@ const StreamPair = () => {
             <Options>
                 {isLoading ? <img src={loading} height={50}/> : (
                     <div style={{width: '50%'}}>
-                        {movies.map(movie => 
-                            <StreamButton streamer={movie.streaming_platform[0]} height={175} name={movie.title} onClick={updateMovies} disabled={disabledButtons.movieButton} image={movie.poster}/>    
+                        {movies.map(movie =>
+                            <StreamButton streamer={movie.streaming_platform[0]} height={175} name={movie.title} onClick={updateMovies} disabled={disabledButtons.movieButton} image={movie.poster}/>
                         )}
                     </div>
                 )}
