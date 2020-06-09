@@ -104,11 +104,14 @@ app.get('/api/shows/production/:production', async (req, res) => {
       .then(result => {
           let showsByProd = [];
           result.forEach(show => {
-              show.production_companies.forEach(company => {
-                  if (company.toLowerCase() == req.params.production.toLowerCase()) {
-                      showsByProd.push(show);
-                  }
-              })
+              if (show.production_companies) {
+                show.production_companies.forEach(company => {
+                    if (company.toLowerCase() == req.params.production.toLowerCase()) {
+                        showsByProd.push(show);
+                    }
+                })
+              }
+             
           })
           showsByProd.sort((s, s2) => {return s2.popularity - s.popularity});
           res.send(showsByProd);
