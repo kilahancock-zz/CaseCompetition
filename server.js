@@ -82,17 +82,39 @@ app.get('/api/movies/production/:production', async (req, res) => {
                   }
               })
           })
-          console.log(moviesByProd);
           res.send(moviesByProd);
         }
 
           )
-      .catch(error => console.log('error', error));
+      
       
 })
 
 
 
+
+//GET movies by streaming platform sorted in order of popularity
+app.get('/api/movies/platform/:platform', async (req, res) => {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+    await fetch("https://casecomp.konnectrv.io/movie", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        let moviesByPlatform = [];
+        result.forEach(movie => {
+            movie.streaming_platform.forEach(platform => {
+                if (platform.toLowerCase() == req.params.platform.toLowerCase()) {
+                    moviesByPlatform.push(movie);
+                }
+            })
+        })
+        moviesByPlatform.sort((m, m2) => {return m2.popularity - m.popularity});
+        console.log(moviesByPlatform);
+        res.send(moviesByPlatform);
+    })
+})
 const port = 5000;
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
