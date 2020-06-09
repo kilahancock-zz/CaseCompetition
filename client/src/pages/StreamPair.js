@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useLayoutEffect} from 'react'
 import styled from 'styled-components'
 import "react-input-range/lib/css/index.css"
 import InputRange from 'react-input-range';
@@ -61,6 +61,7 @@ const StreamPair = () => {
 
     let images = [{image: netflix, name: 'netflix'}, {image: amazon_prime, name: 'amazon_prime'}, {image: hbo, name: 'hbo'}];
     const [movies, setMovies] = useState([])
+    const [shows, setShows] = useState([])
     const [hasPrevSubscription, setHasPrevSubscription] = useState(false)
     const [prevSubscriptions, setPrevSubscriptions] = useState([])
     const [disabledButtons, setDisabledButtons] = useState({
@@ -74,36 +75,33 @@ const StreamPair = () => {
     const [selectedMovies, setSelectedMovies] = useState([])
 
     const [maxPrice, setMaxPrice] = useState({ min: 8, max: 20})
-    const [shows, setShows] = useState([{
-        poster: "https://m.media-amazon.com/images/M/MV5BZGExYjQzNTQtNGNhMi00YmY1LTlhY2MtMTRjODg3MjU4YTAyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg"
-    }])
     let genres = ['Action', 'Romance', 'Thriller', 'Drama', 'Fantasy', 'Horror', 'Western', 'Genre', 'Mystery', 'Hallmark', 'Informative', 'Sad', 'Cat', 'Only'];
 
-    useEffect(() => {
-        let netflixShows = [];
-        let arr = [];
-        axios.get('https://casecomp.konnectrv.io/show?platform=netflix')
-        .then(response => {
-            for (const show of response.data) {
-                if (show.popularity > 85 && show.vote_average > 7) {
-                    netflixShows.push(show);
-                    show.poster = '';
-                }
-            }
-        }).then(() => {
-            for (const show of netflixShows) {
-                // console.log(show.imdb)      
-                const url = 'http://www.omdbapi.com/?i=' + show.imdb + '&apikey=4a3b711b';
-                axios.get(url)
-                .then(response => { show.poster  = response.data.Poster })
-            }
-        })
+    // useEffect(() => {
+    //     let netflixShows = [];
+    //     let arr = [];
+    //     axios.get('https://casecomp.konnectrv.io/show?platform=netflix')
+    //     .then(response => {
+    //         for (const show of response.data) {
+    //             if (show.popularity > 85 && show.vote_average > 7) {
+    //                 netflixShows.push(show);
+    //                 show.poster = '';
+    //             }
+    //         }
+    //     }).then(() => {
+    //         for (const show of netflixShows) {
+    //             // console.log(show.imdb)      
+    //             const url = 'http://www.omdbapi.com/?i=' + show.imdb + '&apikey=4a3b711b';
+    //             axios.get(url)
+    //             .then(response => { show.poster  = response.data.Poster })
+    //         }
+    //     })
 
-        setShows(netflixShows)
-    }, [])
+    //     setShows(netflixShows)
+    // }, [])
 
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         let tempMovies = [];
 
         const fetchMovies = async (platform) => {
@@ -112,27 +110,84 @@ const StreamPair = () => {
                 for (let i = 0; i < 3; i++)
                     tempMovies.push(res.data[i])
             })
+            .then(() => {
+                for (const m of tempMovies) {
+                    axios.get('/api/poster/apikey/4a3b711b/IMDbID/' + m.imdb)
+                    .then(res => {
+                        m['poster'] = res.data
+                    })
+                }
+            })
+            //tempMovies = tempMovies.json()
             setMovies(tempMovies)
         }
 
-        // const fetchPosters = async () => {
-        //     for (const movie of tempMovies) {
-        //         await axios.get('/api/poster/apikey/4a3b711b/IMDbID/' + movie.imdb)
-        //         .then(res => console.log(res.data))
-        //     }
-        // }
-
         fetchMovies('netflix')
-        // fetchMovies('hbo')
-        // fetchMovies('amazon_prime')
-        // fetchPosters()
-
+        fetchMovies('hbo')
+        fetchMovies('amazon_prime')
     }, [])
 
-    console.log('popular movies: ', movies)
+    useLayoutEffect(() => {
+        let tempShows = [];
+
+        const fetchShows = async (platform) => {
+            await axios.get('/api/shows/platform/' + platform)
+            .then(res => {
+                for (let i = 0; i < 4; i++)
+                tempShows.push(res.data[i])
+            })
+            .then(() => {
+                for (const m of tempShows) {
+                    axios.get('/api/poster/apikey/4a3b711b/IMDbID/' + m.imdb)
+                    .then(res => {
+                        m['poster'] = res.data
+                    })
+                }
+            })
+            //tempMovies = tempMovies.json()
+            setShows(tempShows)
+        }
+
+        fetchShows('netflix')
+        fetchShows('hbo')
+        fetchShows('amazon_prime')
+    }, [])
+
+    //console.log(movies)
 
     const submitForm = () => {
+        let res = {
+            data: {
+                genres: {
+                    selectedGenres
+                },
+                movies: {
+                    selectedMovies
+                },
+                shows: {
+                    selectedShows
+                },
+                price: {
+                    maxPrice
+                },
+                prevSubscriptions: {
+                    prevSubscriptions
+                }
+            },
+            choices: {
+                genres: {
+                    genres
+                },
+                movies: {
+                    movies
+                },
+                shows: {
+                    shows
+                }
+            }
+        }
 
+        console.log(res)
     }
 
     const updateGenres = (res) => {
@@ -143,13 +198,18 @@ const StreamPair = () => {
     }
 
     const updateShows = (res) => {
+        // console.log('here')
         if (selectedShows.length >= 2) {
             setDisabledButtons({...disabledButtons, showButton: true})
         }
         setSelectedShows([...selectedShows, res])
     }
 
+    console.log(selectedShows)
+    console.log(shows)
+
     const updateMovies = (res) => {
+        // console.log('here')
         if (selectedMovies.length >= 2) {
             setDisabledButtons({...disabledButtons, movieButton: true})
         }
@@ -178,16 +238,16 @@ const StreamPair = () => {
             <Question>Select three of your favorite TV shows.</Question>
             <Options>
                 <div style={{width: '50%'}}>
-                    {showss.map(show => 
-                        <StreamButton height={175} name={show.name} onClick={updateShows} disabled={disabledButtons.showButton} image={show.poster} id={show.id}/>    
+                    {shows.map(show => 
+                        <StreamButton streamer={show.streaming_platform[0]} height={175} name={show.title} onClick={updateShows} disabled={disabledButtons.showButton} image={show.poster} id={show.id}/>    
                     )}
                 </div>
             </Options>
             <Question>Select three of your favorite movies.</Question>
             <Options>
                 <div style={{width: '50%'}}>
-                    {showss.map(movie => 
-                        <StreamButton height={175} name={movie.name} onClick={updateMovies} disabled={disabledButtons.movieButton} image={movie.poster} id={movie.id}/>    
+                    {movies.map(movie => 
+                        <StreamButton streamer={movie.streaming_platform[0]} height={175} name={movie.title} onClick={updateMovies} disabled={disabledButtons.movieButton} image={movie.poster}/>    
                     )}
                 </div>
             </Options>
@@ -210,7 +270,7 @@ const StreamPair = () => {
                 <Options>
                     <div>
                         {
-                            hasPrevSubscription === true ? images.map(image => <StreamButton image={image.image} name={image.name} onClick={updateSubscription} disabled={false} height={100}/>) : <></>
+                            hasPrevSubscription === true ? images.map(image => <StreamButton streamer={image.name} image={image.image} name={image.name} onClick={updateSubscription} disabled={false} height={100}/>) : <></>
                         }
                     </div>
                 </Options>
