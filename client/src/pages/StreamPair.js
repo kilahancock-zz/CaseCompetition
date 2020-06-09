@@ -164,35 +164,22 @@ const StreamPair = () => {
 
     const submitForm = () => {
         let res = {
-            data: {
-                genres: {
-                    selectedGenres
-                },
-                movies: {
-                    selectedMovies
-                },
-                shows: {
-                    selectedShows
-                },
-                price: {
-                    maxPrice
-                },
-                prevSubscriptions: {
-                    prevSubscriptions
-                }, showsOsMovies: {
-                    showsOrMovies
-                }
+            genres: {
+                selectedGenres
             },
-            choices: {
-                genres: {
-                    genres
-                },
-                movies: {
-                    movies
-                },
-                shows: {
-                    shows
-                }
+            movies: {
+                selectedMovies
+            },
+            shows: {
+                selectedShows
+            },
+            price: {
+                maxPrice
+            },
+            prevSubscriptions: {
+                prevSubscriptions
+            }, showsOsMovies: {
+                showsOrMovies
             }
         }
 
