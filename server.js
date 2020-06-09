@@ -104,11 +104,14 @@ app.get('/api/shows/production/:production', async (req, res) => {
       .then(result => {
           let showsByProd = [];
           result.forEach(show => {
-              show.production_companies.forEach(company => {
-                  if (company.toLowerCase() == req.params.production.toLowerCase()) {
-                      showsByProd.push(show);
-                  }
-              })
+              if (show.production_companies) {
+                show.production_companies.forEach(company => {
+                    if (company.toLowerCase() == req.params.production.toLowerCase()) {
+                        showsByProd.push(show);
+                    }
+                })
+              }
+             
           })
           showsByProd.sort((s, s2) => {return s2.popularity - s.popularity});
           res.send(showsByProd);
@@ -136,7 +139,6 @@ app.get('/api/movies/platform/:platform', async (req, res) => {
             })
         })
         moviesByPlatform.sort((m, m2) => {return m2.popularity - m.popularity});
-        console.log(moviesByPlatform);
         res.send(moviesByPlatform);
     })
 })
@@ -176,6 +178,69 @@ app.get('/api/poster/apikey/:apikey/IMDbID/:id', async (req, res) => {
         res.send(result.Poster);
     })
 })
+
+//Get number of movies by streaming platform
+app.get('/api/movies/number/platform/:platform', async (req, res) => {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+    await fetch(`https://casecomp.konnectrv.io/movie?platform=${req.params.platform}`, requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        numMovies = {
+            'Amount': result.length
+        };
+        res.send(numMovies)
+        
+    })
+})
+
+//GET number of shows by streaming platform
+app.get('/api/shows/number/platform/:platform', async (req, res) => {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+    await fetch(`https://casecomp.konnectrv.io/show?platform=${req.params.platform}`, requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        numShows = {
+            'Amount': result.length
+        };
+        res.send(numShows)
+        
+    })
+})
+
+//GET all movies and shows
+app.get('/api/all', async (req, res) => {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+    let movies = [];
+    await fetch("https://casecomp.konnectrv.io/movie", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        movies = result;
+    })
+    movies.sort((m, m2) => {return m2.popularity - m.popularity});
+
+    let shows = [];
+    await fetch("https://casecomp.konnectrv.io/show", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        shows = result;
+    }).catch(error => console.log('error', error))
+    shows.sort((s, s2) => {return s2.popularity - s.popularity});
+
+    moviesAndShows = movies.concat(shows);
+
+    res.send(moviesAndShows);
+    
+}) 
+
 
 const port = 5000;
 
