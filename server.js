@@ -139,7 +139,6 @@ app.get('/api/movies/platform/:platform', async (req, res) => {
             })
         })
         moviesByPlatform.sort((m, m2) => {return m2.popularity - m.popularity});
-        console.log(moviesByPlatform);
         res.send(moviesByPlatform);
     })
 })
@@ -177,6 +176,23 @@ app.get('/api/poster/apikey/:apikey/IMDbID/:id', async (req, res) => {
     .then(res => res.json())
     .then(result => {
         res.send(result.Poster);
+    })
+})
+
+//Get number of movies by streaming platform
+app.get('/api/movies/number/platform/:platform', async (req, res) => {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+    await fetch(`https://casecomp.konnectrv.io/movie?platform=${req.params.platform}`, requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        numMovies = {
+            'MovieAmount': result.length
+        };
+        res.send(numMovies)
+        
     })
 })
 
