@@ -196,6 +196,23 @@ app.get('/api/movies/number/platform/:platform', async (req, res) => {
     })
 })
 
+//GET number of shows by streaming platform
+app.get('/api/shows/number/platform/:platform', async (req, res) => {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+    await fetch(`https://casecomp.konnectrv.io/show?platform=${req.params.platform}`, requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        numShows = {
+            'ShowsAmount': result.length
+        };
+        res.send(numShows)
+        
+    })
+})
+
 const port = 5000;
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
