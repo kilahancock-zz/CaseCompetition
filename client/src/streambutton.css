@@ -1,0 +1,9 @@
+button.stream-button img:hover{
+    opacity: 1 !important;
+}
+
+button.stream-button,  img{
+  opacity: .8 !important;
+  transition: .3s opacity;
+  cursor: pointer;
+}

@@ -1,0 +1,8 @@
+button.genre-button:hover{
+  box-shadow: 0 12px 16px 0 rgba(51,62,72,0.3) !important;
+}
+
+button.genre-button{
+  box-shadow: 0 12px 16px 0 rgba(51,62,72,0.1) !important;
+  transition: .3s box-shadow;
+}
