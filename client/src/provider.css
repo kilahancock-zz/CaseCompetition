@@ -1,0 +1,52 @@
+@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap);
+@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css);
+
+.provider{
+   font-family: 'Roboto', sans-serif;
+   padding: 0 5vw;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   color: white;
+   font-weight: bold;
+   background-blend-mode: darken;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.provider-name{
+  font-size: 38px;
+  letter-spacing: 1.5px;
+}
+
+h2{
+  text-align: center;
+}
+img{
+  width: 40%;
+  z-index: 1;
+}
+
+h3{
+  font-size: 30px;
+}
+.plans{
+  font-size: 20px;
+  list-style: none;
+  line-height: 1.5;
+  text-align: center;
+  padding: 0;
+}
+
+.spacer{
+  width: 100%;
+}
+
+.btn{
+  color: white;
+  border: none;
+  padding: 10px;
+  margin: 10px;
+}
