@@ -7,6 +7,7 @@ import '../streampair.css';
 import netflix from './netflixlogo.jpeg';
 import hbo from './hbo.jpg';
 import amazon_prime from './amazon_prime.jpg';
+import loading from './loading.gif';
 import StreamButton from '../components/buttons/StreamButton';
 import GenreButton from '../components/buttons/GenreButton';
 import ServiceButton from '../components/buttons/ServiceButton';
@@ -74,6 +75,7 @@ const StreamPair = () => {
         movieButton: false,
         showsOrMoviesButton: false
     })
+    const [isLoading, setIsLoading] = useState(true);
     const [selectedGenres, setSelectedGenres] = useState([])
     const [selectedShows, setSelectedShows] = useState([])
     const [selectedMovies, setSelectedMovies] = useState([])
@@ -123,6 +125,7 @@ const StreamPair = () => {
                 }
             })
             //tempMovies = tempMovies.json()
+            setIsLoading(false)
             setMovies(tempMovies)
         }
 
@@ -250,19 +253,23 @@ const StreamPair = () => {
             </Options>
             <Question>Select three of your favorite TV shows:</Question>
             <Options>
+            {isLoading ? <img src={loading} height={50}/> : (
                 <div style={{width: '50%'}}>
                     {shows.map(show => 
                         <StreamButton streamer={show.streaming_platform[0]} height={175} name={show.title} onClick={updateShows} disabled={disabledButtons.showButton} image={show.poster} id={show.id}/>    
                     )}
                 </div>
+            )}
             </Options>
             <Question className="question">Select three of your favorite movies:</Question>
             <Options>
-                <div style={{width: '50%'}}>
-                    {movies.map(movie => 
-                        <StreamButton streamer={movie.streaming_platform[0]} height={175} name={movie.title} onClick={updateMovies} disabled={disabledButtons.movieButton} image={movie.poster}/>    
-                    )}
-                </div>
+                {isLoading ? <img src={loading} height={50}/> : (
+                    <div style={{width: '50%'}}>
+                        {movies.map(movie => 
+                            <StreamButton streamer={movie.streaming_platform[0]} height={175} name={movie.title} onClick={updateMovies} disabled={disabledButtons.movieButton} image={movie.poster}/>    
+                        )}
+                    </div>
+                )}
             </Options>
             <Question>Do you prefer shows or movies?</Question>
             <Options>
