@@ -46,6 +46,7 @@ app.post("/api/userdata", (req, res) => {
         }
           )
       .catch(error => console.log('error', error));
+      movies.sort((m, m2) => {return m2.popularity - m.popularity});
       res.send(movies);
 })
 
@@ -62,10 +63,11 @@ app.get('/api/shows', async (req, res) => {
         shows = result;
         console.log(shows);
     }).catch(error => console.log('error', error))
+    shows.sort((m, m2) => {return m2.popularity - m.popularity});
     res.send(shows);
 })
 
-//GET movie by production company
+//GET movie by production company sorted by popularity
 app.get('/api/movies/production/:production', async (req, res) => {
     var requestOptions = {
         method: 'GET',
@@ -82,15 +84,85 @@ app.get('/api/movies/production/:production', async (req, res) => {
                   }
               })
           })
-          console.log(moviesByProd);
+          moviesByProd.sort((m, m2) => {return m2.popularity - m.popularity});
           res.send(moviesByProd);
         }
 
           )
-      .catch(error => console.log('error', error));
+      
       
 })
 
+//GET shows by production company sorted by popularity
+app.get('/api/shows/production/:production', async (req, res) => {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+    await fetch("https://casecomp.konnectrv.io/show", requestOptions)
+      .then(response => response.json())
+      .then(result => {
+          let showsByProd = [];
+          result.forEach(show => {
+              show.production_companies.forEach(company => {
+                  if (company.toLowerCase() == req.params.production.toLowerCase()) {
+                      showsByProd.push(show);
+                  }
+              })
+          })
+          showsByProd.sort((s, s2) => {return s2.popularity - s.popularity});
+          res.send(showsByProd);
+        }
+
+          )
+})
+
+
+//GET movies by streaming platform sorted in order of popularity
+app.get('/api/movies/platform/:platform', async (req, res) => {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+    await fetch("https://casecomp.konnectrv.io/movie", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        let moviesByPlatform = [];
+        result.forEach(movie => {
+            movie.streaming_platform.forEach(platform => {
+                if (platform.toLowerCase() == req.params.platform.toLowerCase()) {
+                    moviesByPlatform.push(movie);
+                }
+            })
+        })
+        moviesByPlatform.sort((m, m2) => {return m2.popularity - m.popularity});
+        console.log(moviesByPlatform);
+        res.send(moviesByPlatform);
+    })
+})
+
+//GET shows by streaming platform sorted in order of popularity
+app.get('/api/shows/platform/:platform', async (req, res) => {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+    await fetch("https://casecomp.konnectrv.io/show", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        let showsByPlatform = [];
+        result.forEach(show => {
+            show.streaming_platform.forEach(platform => {
+                if (platform.toLowerCase() == req.params.platform.toLowerCase()) {
+                    showsByPlatform.push(show);
+                }
+            })
+        })
+        showsByPlatform.sort((s, s2) => {return s2.popularity - s.popularity});
+        console.log(showsByPlatform);
+        res.send(showsByPlatform);
+    })
+})
 
 
 const port = 5000;
