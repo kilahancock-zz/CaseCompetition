@@ -10,7 +10,7 @@ import amazon_prime from './amazon_prime.jpg';
 import loading from './loading.gif';
 import StreamButton from '../components/buttons/StreamButton';
 import GenreButton from '../components/buttons/GenreButton';
-import ServiceButton from '../components/buttons/ServiceButton';
+import StreamPairRes from '../components/StreamPairRes';
 
 const Header = styled.header`
     background: transparent;
@@ -52,6 +52,7 @@ const StreamPair = () => {
     const [selectedGenres, setSelectedGenres] = useState([])
     const [selectedShows, setSelectedShows] = useState([])
     const [selectedMovies, setSelectedMovies] = useState([])
+    const [resultsReceived, setResultsReceived] = useState(false)
 
     const [maxPrice, setMaxPrice] = useState({ min: 8, max: 20})
     let genres = ['Action', 'Romance', 'Thriller', 'Drama', 'Fantasy', 'Horror', 'Western', 'Mystery'];
@@ -84,6 +85,8 @@ const StreamPair = () => {
 
     useLayoutEffect(() => {
         let tempShows = [];
+        setResultsReceived(true)
+
 
         const fetchShows = async (platform) => {
             await axios.get('/api/shows/platform/' + platform)
@@ -235,6 +238,18 @@ const StreamPair = () => {
                     </div>
                 </Options>
             <div className="submit-button"><button className="btn btn-success" onClick={submitForm}>Find your provider!</button></div>
+            <Options>
+            {
+                resultsReceived ? 
+                    <StreamPairRes
+                        color='red'
+                        name='Netflix'
+                        link='www.netflix.com'
+                        image={netflix}
+                    /> : 
+                    <></>
+            }
+            </Options>
         </div>
     )
 }
