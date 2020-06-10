@@ -35,8 +35,8 @@ function getUser(req, res, next) {
       }
     });
 }
-function getUserById(req, res, next) {
 
+function getUserById(req, res, next) {
   db.User.find({_id:req.params.id}, function(err, users) {
     if (err) {
       res.send(err);
@@ -46,6 +46,17 @@ function getUserById(req, res, next) {
   })
 }
 
+function getUsersByCountry(req, res, next) {
+  db.User.find({country_code:req.params.country}, function(err, users) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(users);
+    }
+  })
+}
+
+module.exports.getUsersByCountry = getUsersByCountry;
 module.exports.getUserById = getUserById;
 module.exports.postUser = postUser;
 module.exports.getUser = getUser;

@@ -13,8 +13,12 @@ app.get("/api/userdata", (req, res) => {
 })
 
 //GET user by unique id
-app.get("/api/userdata/:id", (req, res) => {
+app.get("/api/userdata/id/:id", (req, res) => {
     userHandler.getUserById(req, res);
+})
+
+app.get("/api/userdata/country/:country", (req, res) => {
+    userHandler.getUsersByCountry(req, res);
 })
 
 //POST userdata from quiz
