@@ -7,21 +7,38 @@ const fetch = require('node-fetch');
 const port = 5000;
 app.use(bodyParser.json());
 
-//GET userdata from quiz
-const userData = [];
+//GET all users from quiz
 app.get("/api/userdata", (req, res) => {
-    res.send(userData);
+    userHandler.getUser(req, res);
 })
 
+//GET user by unique id
+app.get("/api/userdata/id/:id", (req, res) => {
+    userHandler.getUserById(req, res);
+})
+
+//GET users by country
+app.get("/api/userdata/country/:country", (req, res) => {
+    userHandler.getUsersByCountry(req, res);
+})
+
+//GET users by state
+app.get("/api/userdata/state/:state", (req, res) => {
+    userHandler.getUsersByState(req, res);
+})
+
+//GET users by city
+app.get("/api/userdata/city/:city", (req, res) => {
+    userHandler.getUsersByCity(req, res);
+})
+
+//GET users by time zone
+app.get("/api/userdata/time/:time", (req, res) => {
+    userHandler.getUsersByTimeZone(req, res);
+})
 //POST userdata from quiz
 app.post("/api/userdata", (req, res) => {
-    const user = {
-        id: req.body.id,
-        genre: req.body.genre,
-        priceRange: req.body.priceRange
-    }
-    userData.push(user);
-    res.send(user);
+    userHandler.postUser(req, res);
 }); 
 
 //GET all movies

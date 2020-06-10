@@ -20,6 +20,7 @@
     "express": "^4.17.1",
     "mongodb": "^3.5.8",
     "mongoose": "^5.9.18",
+    "node-iplocate": "^1.0.2",
     "node-fetch": "^2.6.0",
     "react-bootstrap": "^0.31.3",
     "react-bootstrap-navbar": "^1.1.0",

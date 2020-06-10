@@ -6,6 +6,171 @@
 	},
 	"item": [
 		{
+			"name": "User Data",
+			"item": [
+				{
+					"name": "GET Users by Time Zone",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/userdata/time/America%2FNew_York",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"userdata",
+								"time",
+								"America%2FNew_York"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Users by City",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/userdata/city/Washington",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"userdata",
+								"city",
+								"Washington"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Users by State",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/userdata/state/District of Columbia",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"userdata",
+								"state",
+								"District of Columbia"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Users by Country",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/userdata/country/US",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"userdata",
+								"country",
+								"US"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET User by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/userdata/id/5ee0fa4ae48e2fbb26b721de",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"userdata",
+								"id",
+								"5ee0fa4ae48e2fbb26b721de"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/userdata",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"userdata"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST User Data",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"minPrice\": 8,\n    \"maxPrice\": 20,\n    \"genres\": [\n        \"action\",\n        \"drama\",\n        \"thriller\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/userdata",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"userdata"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "GET User Data",
 			"request": {
 				"method": "GET",

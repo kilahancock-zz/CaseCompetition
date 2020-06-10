@@ -6,10 +6,12 @@ import axios from 'axios';
 import '../streampair.css';
 import netflix from './netflixlogo.jpeg';
 import hbo from './hbo.jpg';
+import hbo2 from './hboRes.png';
 import amazon_prime from './amazon_prime.jpg';
 import loading from './loading.gif';
 import StreamButton from '../components/buttons/StreamButton';
 import GenreButton from '../components/buttons/GenreButton';
+import StreamPairRes from '../components/StreamPairRes';
 import ServiceButton from '../components/buttons/ServiceButton';
 import formHandler from '../formHandler/form';
 
@@ -53,6 +55,8 @@ const StreamPair = () => {
     const [selectedGenres, setSelectedGenres] = useState([])
     const [selectedShows, setSelectedShows] = useState([])
     const [selectedMovies, setSelectedMovies] = useState([])
+    const [resultsReceived, setResultsReceived] = useState(false)
+    const [streamResults, setStreamResults] = useState({})
 
     const [maxPrice, setMaxPrice] = useState({ min: 8, max: 20})
     let genres = ['Action', 'Romance', 'Thriller', 'Drama', 'Fantasy', 'Horror', 'Western', 'Mystery'];
@@ -122,7 +126,32 @@ const StreamPair = () => {
             }
 
         let result = await formHandler(res);
-        alert(result)
+
+        if (result === 'amazon_prime') {
+            setStreamResults({
+                name: 'Amazon Prime',
+                image: amazon_prime,
+                link: 'https://www.amazon.com/gp/video/offers',
+                color: '#00acff'
+            })
+        } else if (result === 'netflix') {
+            setStreamResults({
+                name: 'Netflix',
+                image: netflix,
+                link: 'https://www.netflix.com/',
+                color: 'red'
+            })
+        } else {
+            setStreamResults({
+                name: 'HBO',
+                image: hbo,
+                link: 'https://www.hbo.com/order',
+                color: 'purple'
+            })
+        }
+
+        setResultsReceived(true)
+        // alert(result)
     }
 
     const updateGenres = (res) => {
@@ -226,6 +255,18 @@ const StreamPair = () => {
                     </div>
                 </Options>
             <div className="submit-button"><button className="btn btn-success" onClick={submitForm}>Find your provider!</button></div>
+            <Options>
+            {
+                resultsReceived ? 
+                    <StreamPairRes
+                        color={streamResults.color}
+                        name={streamResults.name}
+                        link={streamResults.link}
+                        image={streamResults.image}
+                    /> : 
+                    <></>
+            }
+            </Options>
         </div>
     )
 }

@@ -63,3 +63,43 @@ h3{
   padding: 10px;
   margin: 10px;
 }
+
+.posters img {
+  width: 30%;
+  height: auto;
+  border-radius: 5px;
+  display: inline-block;
+  margin: 1%;
+}
+
+.posters {
+  margin: 3%;
+  margin: 0 auto;
+  width: 60%;
+  display: flex;
+}
+
+.head {
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 300%;
+  margin-bottom: 5%;
+  display: inline-block;
+}
+
+.sub {
+  width: auto;
+  height: 25%;
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 200%;
+  float: right;
+}
+
+.sub:hover {
+  background-color: #232324;
+  color: #fff;
+}
+
+#close {
+  margin: 2%;
+  float: left;
+}
