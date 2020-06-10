@@ -35,33 +35,6 @@ const Options = styled.div`
 `
 
 const StreamPair = () => {
-    let showss = [{
-            poster: "https://m.media-amazon.com/images/M/MV5BZGExYjQzNTQtNGNhMi00YmY1LTlhY2MtMTRjODg3MjU4YTAyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
-            id: 0,
-            name: 'Stranger Things'
-        },
-        {
-            poster: "https://m.media-amazon.com/images/M/MV5BZGExYjQzNTQtNGNhMi00YmY1LTlhY2MtMTRjODg3MjU4YTAyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
-            id: 1,
-            name: 'Stranger Things'
-        },
-        {
-            poster: "https://m.media-amazon.com/images/M/MV5BZGExYjQzNTQtNGNhMi00YmY1LTlhY2MtMTRjODg3MjU4YTAyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
-            id: 2,
-            name: 'Stranger Things'
-        },
-        {
-            poster: "https://m.media-amazon.com/images/M/MV5BZGExYjQzNTQtNGNhMi00YmY1LTlhY2MtMTRjODg3MjU4YTAyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
-            id: 2,
-            name: 'Stranger Things'
-        },
-        {
-            poster: "https://m.media-amazon.com/images/M/MV5BZGExYjQzNTQtNGNhMi00YmY1LTlhY2MtMTRjODg3MjU4YTAyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
-            id: 2,
-            name: 'Stranger Things'
-        },
-    ]
-
     let images = [{image: netflix, name: 'netflix'}, {image: amazon_prime, name: 'amazon_prime'}, {image: hbo, name: 'hbo'}];
     const [showsOrMovies, setShowsOrMovies] = useState('')
     const [movies, setMovies] = useState([])
@@ -83,30 +56,6 @@ const StreamPair = () => {
     const [maxPrice, setMaxPrice] = useState({ min: 8, max: 20})
     let genres = ['Action', 'Romance', 'Thriller', 'Drama', 'Fantasy', 'Horror', 'Western', 'Mystery'];
 
-    // useEffect(() => {
-    //     let netflixShows = [];
-    //     let arr = [];
-    //     axios.get('https://casecomp.konnectrv.io/show?platform=netflix')
-    //     .then(response => {
-    //         for (const show of response.data) {
-    //             if (show.popularity > 85 && show.vote_average > 7) {
-    //                 netflixShows.push(show);
-    //                 show.poster = '';
-    //             }
-    //         }
-    //     }).then(() => {
-    //         for (const show of netflixShows) {
-    //             // console.log(show.imdb)
-    //             const url = 'http://www.omdbapi.com/?i=' + show.imdb + '&apikey=4a3b711b';
-    //             axios.get(url)
-    //             .then(response => { show.poster  = response.data.Poster })
-    //         }
-    //     })
-
-    //     setShows(netflixShows)
-    // }, [])
-
-
     useLayoutEffect(() => {
         let tempMovies = [];
 
@@ -124,7 +73,6 @@ const StreamPair = () => {
                     })
                 }
             })
-            //tempMovies = tempMovies.json()
             setIsLoading(false)
             setMovies(tempMovies)
         }
@@ -194,7 +142,6 @@ const StreamPair = () => {
     }
 
     const updateShows = (res) => {
-        // console.log('here')
         if (selectedShows.length >= 2) {
             setDisabledButtons({...disabledButtons, showButton: true})
         }
@@ -205,7 +152,6 @@ const StreamPair = () => {
     console.log(shows)
 
     const updateMovies = (res) => {
-        // console.log('here')
         if (selectedMovies.length >= 2) {
             setDisabledButtons({...disabledButtons, movieButton: true})
         }
@@ -221,10 +167,6 @@ const StreamPair = () => {
         setShowsOrMovies(res)
     }
 
-    console.log(showsOrMovies)
-
-    // once form is submitted, store the max value
-// 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,149,255,1) 0%, rgba(21,196,196,1) 100%)'
     return (
         <div className="form" style={{background: '#f8f8f8'}}>
             <div style={{ justifyContent: 'center', display: 'flex' }}>
@@ -240,7 +182,7 @@ const StreamPair = () => {
             </Options>
             <Question>Select three of your favorite TV shows:</Question>
             <Options>
-            {isLoading ? <img src={loading} height={50}/> : (
+            {isLoading ? <img src={loading} className='loading-img' height={50}/> : (
                 <div style={{width: '50%'}}>
                     {shows.map(show =>
                         <StreamButton streamer={show.streaming_platform[0]} height={175} name={show.title} onClick={updateShows} disabled={disabledButtons.showButton} image={show.poster} id={show.id}/>
@@ -248,9 +190,9 @@ const StreamPair = () => {
                 </div>
             )}
             </Options>
-            <Question className="question">Select three of your favorite movies:</Question>
+            <Question>Select three of your favorite movies:</Question>
             <Options>
-                {isLoading ? <img src={loading} height={50}/> : (
+                {isLoading ? <img src={loading} className='loading-img' height={50}/> : (
                     <div style={{width: '50%'}}>
                         {movies.map(movie =>
                             <StreamButton streamer={movie.streaming_platform[0]} height={175} name={movie.title} onClick={updateMovies} disabled={disabledButtons.movieButton} image={movie.poster}/>

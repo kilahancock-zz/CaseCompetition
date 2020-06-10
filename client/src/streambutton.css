@@ -5,4 +5,9 @@ button.stream-button img:hover{
 button.stream-button, img{
   transition: .2s opacity;
   cursor: pointer;
+  height: 175px;
+}
+
+.loading-img {
+  height: 70px;
 }
