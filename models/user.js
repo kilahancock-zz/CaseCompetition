@@ -36,6 +36,18 @@ const userSchema = new mongoose.Schema({
   },
   genres: {
     type: [String]
+  },
+  clickedNetflix: {
+    type: Boolean
+  },
+  clickedAmazon: {
+    type: Boolean
+  },
+  clickedHBO: {
+    type: Boolean
+  },
+  matchedProvider: {
+    type: String
   }
 
 //to be added based off of user form
