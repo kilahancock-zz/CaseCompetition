@@ -5,6 +5,7 @@ import { Button, Container, Columns } from 'react-bulma-components';
 import Provider from './Provider';
 import Modal from 'react-modal';
 import StreamPair from "../pages/StreamPair";
+import logo from './logo.png';
 
 class Home extends Component {
     constructor() {
@@ -28,7 +29,7 @@ class Home extends Component {
             <Container className="all is-fluid">
                 <Columns id="header">
                     <Columns.Column className="title">
-                        <div><h1 id="hero">StreamPair</h1></div>
+                        <div><h1 id="hero">StreamPair</h1><img id="logo" src={logo} alt="logo"/></div>
                     </Columns.Column>
                     <Columns.Column className="stream">
                         <div><Button onClick={() => this.setState({modalIsOpen: true})} id="now">StreamPair Now!</Button></div>

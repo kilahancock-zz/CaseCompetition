@@ -53,6 +53,13 @@ class Admin extends Component{
 
   render(){
     const {users, fill} = this.state;
+    (function (p,o,s,t,m,a,n) {
+      !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
+      !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild((
+        (n = o.createElement("script")),
+        (n.id = s+t), (n.async = 1), (n.src = m), n
+      ));
+    }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
      return(
        <div>
        <div className="admin-page">
@@ -61,8 +68,11 @@ class Admin extends Component{
         <option value="Providers Matched">Providers Matched</option>
         <option value="Providers Clicked">Providers Clicked</option>
       </select>
+      <div class="postman-run-button"
+          data-postman-action="collection/import"
+          data-postman-var-1="e85152dc6106ea218fae"></div>
       </div>
-        <Map users={users} fill={fill}/>
+      <Map users={users} fill={fill}/>
       </div>
     )
   }

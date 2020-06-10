@@ -5,7 +5,7 @@
     color: #a4d3e6;
     font-size: 300%;
     text-align: left;
-    margin-top: 3%;
+    margin-top: 20px;
     margin-left: 3%;
     font-family: 'Fjalla One', sans-serif;
     display: inline-block;
@@ -48,4 +48,12 @@
     #hero, #now {width: 90%}
     #text {top:0; margin-top: 20%}
     #now {top:0}
+}
+
+#logo {
+    height: 60px;
+    width: auto;
+    position: relative;
+    top: -20px;
+    margin-left: 5px;
 }
