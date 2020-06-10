@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
+h1{
+  color: black;
+}
+.admin-page{
+  padding: 10px;
+  transform: translateY(15px);
+  opacity: 0;
+  animation: 1s slidein .2s forwards;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@keyframes slidein{
+  100%{
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.d3-choice{
+  height:50px;
+}
