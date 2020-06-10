@@ -11,6 +11,7 @@ import loading from './loading.gif';
 import StreamButton from '../components/buttons/StreamButton';
 import GenreButton from '../components/buttons/GenreButton';
 import ServiceButton from '../components/buttons/ServiceButton';
+import formHandler from '../formHandler/form';
 
 const Header = styled.header`
     background: transparent;
@@ -110,28 +111,18 @@ const StreamPair = () => {
 
     let showsmovies = ['Shows', 'Movies']
 
-    const submitForm = () => {
+    const submitForm = async () => {
         let res = {
-            genres: {
-                selectedGenres
-            },
-            movies: {
-                selectedMovies
-            },
-            shows: {
-                selectedShows
-            },
-            price: {
-                maxPrice
-            },
-            prevSubscriptions: {
-                prevSubscriptions
-            }, showsOsMovies: {
+                selectedGenres,
+                selectedMovies,
+                selectedShows,
+                maxPrice,
+                prevSubscriptions,
                 showsOrMovies
             }
-        }
 
-        console.log(res)
+        let result = await formHandler(res);
+        alert(result)
     }
 
     const updateGenres = (res) => {
