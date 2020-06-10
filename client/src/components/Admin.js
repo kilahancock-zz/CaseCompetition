@@ -87,6 +87,11 @@ class Admin extends Component{
         <option value="Providers Matched">Providers Matched</option>
         <option value="Providers Clicked">Providers Clicked</option>
       </select>
+      <div class="legend">
+        <div class="legend-HBO">HBO</div>
+        <div class="legend-netflix">Netflix</div>
+        <div class="legend-amazon-prime">Amazon</div>
+      </div>
       <div class="postman-run-button"
           data-postman-action="collection/import"
           data-postman-var-1="e85152dc6106ea218fae"></div>

@@ -1,4 +1,5 @@
 import React from 'react'
+import Reward from 'react-rewards'
 
 const StreamPairRes = ({ image, name, link, color }) => {
     const signUp = () => {

@@ -25,3 +25,41 @@ h1{
   height:50px;
 }
 
+.legend-HBO {
+  width: 50px;
+  height: 20px;
+  background-color: blueviolet;
+  border-radius: 50px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2px;
+  margin-left: 10px;
+}
+
+.legend-netflix {
+  width: 50px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2px;
+  margin-left: 10px;
+}
+
+.legend-amazon-prime {
+  width: 70px;
+  height: 20px;
+  background-color: lightblue;
+  border-radius: 50px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+.legend {
+  text-align: center;
+}

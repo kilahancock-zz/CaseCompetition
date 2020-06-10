@@ -15,6 +15,7 @@ import StreamPairRes from '../components/StreamPairRes';
 import ServiceButton from '../components/buttons/ServiceButton';
 import formHandler from '../formHandler/form';
 
+
 const Header = styled.header`
     background: transparent;
     color: black;
@@ -257,14 +258,14 @@ const StreamPair = () => {
             <div className="submit-button"><button className="btn btn-success" onClick={submitForm}>Find your provider!</button></div>
             <Options>
             {
-                resultsReceived ? 
+                resultsReceived ? (
                     <StreamPairRes
                         color={streamResults.color}
                         name={streamResults.name}
                         link={streamResults.link}
                         image={streamResults.image}
-                    /> : 
-                    <></>
+                    /> 
+                ) : <></>
             }
             </Options>
         </div>
