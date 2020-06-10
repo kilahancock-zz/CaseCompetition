@@ -17,10 +17,25 @@ app.get("/api/userdata/id/:id", (req, res) => {
     userHandler.getUserById(req, res);
 })
 
+//GET users by country
 app.get("/api/userdata/country/:country", (req, res) => {
     userHandler.getUsersByCountry(req, res);
 })
 
+//GET users by state
+app.get("/api/userdata/state/:state", (req, res) => {
+    userHandler.getUsersByState(req, res);
+})
+
+//GET users by city
+app.get("/api/userdata/city/:city", (req, res) => {
+    userHandler.getUsersByCity(req, res);
+})
+
+//GET users by time zone
+app.get("/api/userdata/time/:time", (req, res) => {
+    userHandler.getUsersByTimeZone(req, res);
+})
 //POST userdata from quiz
 app.post("/api/userdata", (req, res) => {
     userHandler.postUser(req, res);

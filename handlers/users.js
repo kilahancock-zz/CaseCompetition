@@ -3,7 +3,7 @@ const iplocate = require("node-iplocate");
 
 function postUser(req, res, next){
   try {
-    iplocate('216.185.5.238').then(async function(results) {
+    iplocate('13.10.185.190').then(async function(results) {
       let newUser = await db.User.create({
           ip: results.ip,
           country: results.country,
@@ -56,6 +56,39 @@ function getUsersByCountry(req, res, next) {
   })
 }
 
+function getUsersByState(req, res, next) {
+  db.User.find({state:req.params.state}, function(err, users) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(users);
+    }
+  })
+}
+
+function getUsersByCity(req, res, next) {
+  db.User.find({city:req.params.city}, function(err, users) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(users);
+    }
+  })
+}
+
+function getUsersByTimeZone(req, res, next) {
+  db.User.find({time_zone:req.params.time}, function(err, users) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(users);
+    }
+  })
+}
+
+module.exports.getUsersByTimeZone = getUsersByTimeZone;
+module.exports.getUsersByCity = getUsersByCity;
+module.exports.getUsersByState = getUsersByState;
 module.exports.getUsersByCountry = getUsersByCountry;
 module.exports.getUserById = getUserById;
 module.exports.postUser = postUser;
