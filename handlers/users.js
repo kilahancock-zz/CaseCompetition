@@ -1,7 +1,7 @@
 const db = require('../models');
 const iplocate = require("node-iplocate");
 
-function userHandler(req, res, next){
+function postUser(req, res, next){
   try {
     iplocate('216.185.5.238').then(async function(results) {
       let newUser = await db.User.create({
@@ -26,4 +26,15 @@ function userHandler(req, res, next){
   }
 }
 
-module.exports = userHandler;
+function getUser(req, res, next) {
+    db.User.find({}, function(err, users) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.json(users);
+      }
+    });
+}
+
+module.exports.postUser = postUser;
+module.exports.getUser = getUser;

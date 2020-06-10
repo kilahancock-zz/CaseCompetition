@@ -4,20 +4,18 @@ const db = require('./models');
 const userHandler = require('./handlers/users')
 const bodyParser = require('body-parser');
 const fetch = require('node-fetch');
-const iplocate = require("node-iplocate");
 const port = 5000;
 app.use(bodyParser.json());
 
-//GET userdata from quiz
-const userData = [];
+//GET all users from quiz
 app.get("/api/userdata", (req, res) => {
-    res.send(userData);
+    userHandler.getUser(req, res);
 })
 
 //POST userdata from quiz
 app.post("/api/userdata", (req, res) => {
-    userHandler(req, res)
-});
+    userHandler.postUser(req, res);
+}); 
 
 //GET all movies
  app.get('/api/movies', async (req, res)  => {
@@ -76,8 +74,8 @@ app.get('/api/movies/production/:production', async (req, res) => {
         }
 
           )
-
-
+      
+      
 })
 
 //GET shows by production company sorted by popularity
@@ -98,7 +96,7 @@ app.get('/api/shows/production/:production', async (req, res) => {
                     }
                 })
               }
-
+             
           })
           showsByProd.sort((s, s2) => {return s2.popularity - s.popularity});
           res.send(showsByProd);
@@ -179,7 +177,7 @@ app.get('/api/movies/number/platform/:platform', async (req, res) => {
             'Amount': result.length
         };
         res.send(numMovies)
-
+        
     })
 })
 
@@ -196,7 +194,7 @@ app.get('/api/shows/number/platform/:platform', async (req, res) => {
             'Amount': result.length
         };
         res.send(numShows)
-
+        
     })
 })
 
@@ -278,7 +276,7 @@ let genreData = [
         "amazon_prime": 28
     }
 ]
-/* fillGenreData - makes live calculation of the number of TV Shows and Movies
+/* fillGenreData - makes live calculation of the number of TV Shows and Movies 
                    for each streaming service that match a given genre
   NOTE -           Results of this function should be sent to a database rather than stored locally.
                    This function takes a very long time to execute
@@ -305,7 +303,7 @@ async function fillGenreData() {
                     if (omdbMovie.Genre.toLowerCase().includes(element.genre)) {
                         element[movie.streaming_platform[0]]++;
                         console.log(genreData);
-                    }
+                    } 
                 })
             })
         }
@@ -328,3 +326,4 @@ app.get('/api/platform-by-genre/:genre/apikey/:apikey', async (req, res) => {
 
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
+
