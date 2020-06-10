@@ -1,0 +1,344 @@
+[{
+  "_id": {
+    "$oid": "5ee0fbfd61eeb3bece9c0b23"
+  },
+  "genres": [
+    "Action",
+    "Thriller",
+    "Horror"
+  ],
+  "ip": "216.185.5.238",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Washington",
+  "time_zone": "America/New_York",
+  "postal_code": "20017",
+  "state": "District of Columbia",
+  "latitude": "38.9371",
+  "longitude": "-76.9928",
+  "minPrice": 8,
+  "maxPrice": 20,
+  "__v": 0,
+  "clickedNetflix": false,
+  "clickedHBO": true,
+  "clickedAmazon": true,
+  "matchedProvider": "Netflix"
+},{
+  "_id": {
+    "$oid": "5ee10a845bbeadc8d68232c5"
+  },
+  "genres": [
+    "Comedy",
+    "Horror",
+    "Action"
+  ],
+  "ip": "74.219.17.74",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Chapel Hill",
+  "time_zone": "America/New_York",
+  "postal_code": "27516",
+  "state": "North Carolina",
+  "latitude": "35.9151",
+  "longitude": "-79.0972",
+  "minPrice": 8,
+  "maxPrice": 20,
+  "__v": 0,
+  "clickedNetflix": true,
+  "clickedHBO": true,
+  "clickedAmazon": false,
+  "matchedProvider": "Amazon"
+},{
+  "_id": {
+    "$oid": "5ee10aa823a18cc8f4a12af6"
+  },
+  "genres": [
+    "action",
+    "drama",
+    "thriller"
+  ],
+  "ip": "209.251.239.89",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Charlotte",
+  "time_zone": "America/New_York",
+  "postal_code": "28203",
+  "state": "North Carolina",
+  "latitude": "35.21",
+  "longitude": "-80.8512",
+  "minPrice": 8,
+  "maxPrice": 20,
+  "__v": 0,
+  "clickedNetflix": true,
+  "clickedHBO": false,
+  "clickedAmazon": true,
+  "matchedProvider": "HBO"
+},{
+  "_id": {
+    "$oid": "5ee10ae4a3d77cc91477561f"
+  },
+  "genres": [
+    "Action",
+    "Thriller"
+  ],
+  "ip": "64.237.236.167",
+  "country": "Puerto Rico",
+  "country_code": "PR",
+  "city": "San Juan",
+  "time_zone": "America/Puerto_Rico",
+  "postal_code": "926.0",
+  "state": "null",
+  "latitude": "18.4686",
+  "longitude": "-66.1057",
+  "minPrice": 8,
+  "maxPrice": 20,
+  "__v": 0,
+  "clickedNetflix": true,
+  "clickedAmazon": false,
+  "clickedHBO": true,
+  "matchedProvider": "Amazon"
+},{
+  "_id": {
+    "$oid": "5ee10b28acfd7dc932c6c6c7"
+  },
+  "genres": [
+    "Action",
+    "Comedy"
+  ],
+  "ip": "209.251.239.89",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Charlotte",
+  "time_zone": "America/New_York",
+  "postal_code": "28203",
+  "state": "North Carolina",
+  "latitude": "35.21",
+  "longitude": "-80.8512",
+  "minPrice": 8,
+  "maxPrice": 20,
+  "__v": 0,
+  "clickedNetflix": false,
+  "clickedAmazon": true,
+  "clickedHBO": true,
+  "matchedProvider": "HBO"
+},{
+  "_id": {
+    "$oid": "5ee1229552fb3b8395fb93e7"
+  },
+  "genres": [
+    "horror",
+    "comedy"
+  ],
+  "ip": "180.76.109.5",
+  "country": "China",
+  "country_code": "CN",
+  "city": null,
+  "time_zone": "Asia/Shanghai",
+  "postal_code": null,
+  "state": "Beijing",
+  "latitude": "39.9289",
+  "longitude": "116.3883",
+  "clickedNetflix": true,
+  "clickedAmazon": false,
+  "clickedHBO": true,
+  "matchedProvider": "Netflix",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ee122e552fb3b8395fb93e8"
+  },
+  "genres": [
+    "horror",
+    "comedy"
+  ],
+  "ip": "2.21.103.255",
+  "country": "Austria",
+  "country_code": "AT",
+  "city": null,
+  "time_zone": "Europe/Vienna",
+  "postal_code": null,
+  "state": null,
+  "latitude": "48.2",
+  "longitude": "16.3667",
+  "clickedNetflix": true,
+  "clickedAmazon": false,
+  "clickedHBO": true,
+  "matchedProvider": "Netflix",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ee1230652fb3b8395fb93e9"
+  },
+  "genres": [
+    "horror",
+    "comedy"
+  ],
+  "ip": "202.172.116.129",
+  "country": "Australia",
+  "country_code": "AU",
+  "city": "Sydney",
+  "time_zone": "Australia/Sydney",
+  "postal_code": "2000",
+  "state": "New South Wales",
+  "latitude": "-33.8591",
+  "longitude": "151.2002",
+  "clickedNetflix": true,
+  "clickedAmazon": false,
+  "clickedHBO": false,
+  "matchedProvider": "Amazon",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ee1231952fb3b8395fb93ea"
+  },
+  "genres": [
+    "horror",
+    "comedy"
+  ],
+  "ip": "180.189.17.98",
+  "country": "Australia",
+  "country_code": "AU",
+  "city": "Newtown",
+  "time_zone": "Australia/Sydney",
+  "postal_code": "2042",
+  "state": "New South Wales",
+  "latitude": "-33.9012",
+  "longitude": "151.1768",
+  "clickedNetflix": true,
+  "clickedAmazon": false,
+  "clickedHBO": false,
+  "matchedProvider": "Amazon",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ee1234552fb3b8395fb93eb"
+  },
+  "genres": [
+    "horror",
+    "comedy"
+  ],
+  "ip": "208.92.228.62",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Richmond",
+  "time_zone": "America/Chicago",
+  "postal_code": "77406",
+  "state": "Texas",
+  "latitude": "29.646",
+  "longitude": "-95.8023",
+  "clickedNetflix": false,
+  "clickedAmazon": true,
+  "clickedHBO": true,
+  "matchedProvider": "HBO",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ee1235f52fb3b8395fb93ec"
+  },
+  "genres": [
+    "horror",
+    "comedy"
+  ],
+  "ip": "199.192.26.69",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Los Angeles",
+  "time_zone": "America/Los_Angeles",
+  "postal_code": "90064",
+  "state": "California",
+  "latitude": "34.0318",
+  "longitude": "-118.4252",
+  "clickedNetflix": true,
+  "clickedAmazon": true,
+  "clickedHBO": false,
+  "matchedProvider": "Netflix",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ee1239b52fb3b8395fb93ed"
+  },
+  "genres": [
+    "horror",
+    "comedy"
+  ],
+  "ip": "132.203.168.91",
+  "country": "Canada",
+  "country_code": "CA",
+  "city": "Québec",
+  "time_zone": "America/Toronto",
+  "postal_code": "G1V",
+  "state": "Quebec",
+  "latitude": "46.7829",
+  "longitude": "-71.2836",
+  "clickedNetflix": false,
+  "clickedAmazon": true,
+  "clickedHBO": true,
+  "matchedProvider": "HBO",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ee123c152fb3b8395fb93ee"
+  },
+  "genres": [
+    "horror",
+    "comedy"
+  ],
+  "ip": "2.20.139.0",
+  "country": null,
+  "country_code": null,
+  "city": null,
+  "time_zone": "Europe/Vaduz",
+  "postal_code": null,
+  "state": null,
+  "latitude": "47",
+  "longitude": "8",
+  "clickedNetflix": false,
+  "clickedAmazon": false,
+  "clickedHBO": true,
+  "matchedProvider": "Amazon",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ee123e352fb3b8395fb93ef"
+  },
+  "genres": [
+    "horror",
+    "comedy"
+  ],
+  "ip": "5.75.255.255",
+  "country": "Germany",
+  "country_code": "DE",
+  "city": null,
+  "time_zone": "Europe/Berlin",
+  "postal_code": null,
+  "state": null,
+  "latitude": "51.2993",
+  "longitude": "9.491",
+  "clickedNetflix": false,
+  "clickedAmazon": false,
+  "clickedHBO": true,
+  "matchedProvider": "Amazon",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5ee1240752fb3b8395fb93f0"
+  },
+  "genres": [
+    "horror",
+    "comedy"
+  ],
+  "ip": "5.135.10.127",
+  "country": "United Kingdom",
+  "country_code": "GB",
+  "city": "Redditch",
+  "time_zone": "Europe/London",
+  "postal_code": "B97",
+  "state": "England",
+  "latitude": "52.2799",
+  "longitude": "-1.9407",
+  "clickedNetflix": false,
+  "clickedAmazon": true,
+  "clickedHBO": true,
+  "matchedProvider": "Netflix",
+  "__v": 0
+}]

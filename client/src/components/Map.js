@@ -8,7 +8,6 @@ const projection = geoEqualEarth()
 
 const WorldMap = (props) => {
   const {users, fill} = props;
-  console.log(users)
   const [geographies, setGeographies] = useState([])
 
   useEffect(() => {

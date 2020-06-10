@@ -17,37 +17,56 @@ class Admin extends Component{
 
   handleChange = (e) => {
     if (e.target.value === "Providers Matched"){
-      console.log("Matched")
+      fetch("/api/userdata").then(response => {
+        response.json().then(data => {
+          let users = data.map(u => ({provider: u.matchedProvider, coordinates:[u.latitude, u.longitude]}));
+          console.log(users);
+          this.setState({
+            ...this.state,
+            users
+          })
+        });
+      })
     }
 
     else{
-      console.log("Clicked");
+      fetch("/api/userdata").then(response => {
+        response.json().then(data => {
+          let users = []
+          data.forEach(d => {
+            if (d.clickedNetflix){
+              users.push({provider: "Netflix", coordinates:[d.latitude, d.longitude] })
+            }
+
+            if (d.clickedAmazon){
+              users.push({provider: "Amazon", coordinates:[d.latitude, d.longitude]})
+            }
+
+            if (d.clickedHBO){
+              users.push({provider: "HBO", coordinates:[d.latitude, d.longitude]})
+            }
+          })
+          console.log(users);
+          this.setState({
+            ...this.state,
+            users
+          })
+        });
+      })
     }
   }
 
   componentDidMount(){
-    //call Providers Matched
-    this.setState({
-      ...this.state,
-      users: [
-        { provider: "Netflix",          coordinates: [139.6917,35.6895]},
-        { provider: "Amazon",        coordinates: [106.8650,-6.1751]},
-        { provider: "Netflix",          coordinates: [77.1025,28.7041] },
-        { provider: "Netflix",         coordinates: [120.9842,14.5995]},
-        { provider: "Netflix",          coordinates: [126.9780,37.5665]},
-        { provider: "Amazon",       coordinates: [121.4737,31.2304]},
-        { provider: "Amazon",        coordinates: [67.0099,24.8615]},
-        { provider: "Amazon",        coordinates: [116.4074,39.9042]},
-        { provider: "Amazon",       coordinates: [-74.0059,40.7128]},
-        { provider: "HBO",      coordinates: [113.2644,23.1291]},
-        { provider: "HBO",      coordinates: [-46.6333,-23.5505]},
-        { provider: "HBO",    coordinates: [-99.1332,19.4326]},
-        { provider: "HBO",         coordinates: [72.8777,19.0760]},
-        { provider: "HBO",          coordinates: [135.5022,34.6937]},
-        { provider: "HBO",         coordinates: [37.6173,55.7558]},
-        { provider: "HBO",          coordinates: [90.4125,23.8103]},
-        {  provider: "Netflix",  coordinates: [31.2357,30.0444]},
-      ]
+
+    fetch("/api/userdata").then(response => {
+      response.json().then(data => {
+        let users = data.map(u => ({provider: u.matchedProvider, coordinates:[u.latitude, u.longitude]}));
+        console.log(users);
+        this.setState({
+          ...this.state,
+          users
+        })
+      });
     })
   }
 
