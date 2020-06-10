@@ -6,11 +6,14 @@ import axios from 'axios';
 import '../streampair.css';
 import netflix from './netflixlogo.jpeg';
 import hbo from './hbo.jpg';
+import hbo2 from './hboRes.png';
 import amazon_prime from './amazon_prime.jpg';
 import loading from './loading.gif';
 import StreamButton from '../components/buttons/StreamButton';
 import GenreButton from '../components/buttons/GenreButton';
 import StreamPairRes from '../components/StreamPairRes';
+import ServiceButton from '../components/buttons/ServiceButton';
+import formHandler from '../formHandler/form';
 
 const Header = styled.header`
     background: transparent;
@@ -53,6 +56,7 @@ const StreamPair = () => {
     const [selectedShows, setSelectedShows] = useState([])
     const [selectedMovies, setSelectedMovies] = useState([])
     const [resultsReceived, setResultsReceived] = useState(false)
+    const [streamResults, setStreamResults] = useState({})
 
     const [maxPrice, setMaxPrice] = useState({ min: 8, max: 20})
     let genres = ['Action', 'Romance', 'Thriller', 'Drama', 'Fantasy', 'Horror', 'Western', 'Mystery'];
@@ -85,8 +89,6 @@ const StreamPair = () => {
 
     useLayoutEffect(() => {
         let tempShows = [];
-        setResultsReceived(true)
-
 
         const fetchShows = async (platform) => {
             await axios.get('/api/shows/platform/' + platform)
@@ -113,28 +115,43 @@ const StreamPair = () => {
 
     let showsmovies = ['Shows', 'Movies']
 
-    const submitForm = () => {
+    const submitForm = async () => {
         let res = {
-            genres: {
-                selectedGenres
-            },
-            movies: {
-                selectedMovies
-            },
-            shows: {
-                selectedShows
-            },
-            price: {
-                maxPrice
-            },
-            prevSubscriptions: {
-                prevSubscriptions
-            }, showsOsMovies: {
+                selectedGenres,
+                selectedMovies,
+                selectedShows,
+                maxPrice,
+                prevSubscriptions,
                 showsOrMovies
             }
+
+        let result = await formHandler(res);
+
+        if (result === 'amazon_prime') {
+            setStreamResults({
+                name: 'Amazon Prime',
+                image: amazon_prime,
+                link: 'https://www.amazon.com/gp/video/offers',
+                color: '#00acff'
+            })
+        } else if (result === 'netflix') {
+            setStreamResults({
+                name: 'Netflix',
+                image: netflix,
+                link: 'https://www.netflix.com/',
+                color: 'red'
+            })
+        } else {
+            setStreamResults({
+                name: 'HBO',
+                image: hbo,
+                link: 'https://www.hbo.com/order',
+                color: 'purple'
+            })
         }
 
-        console.log(res)
+        setResultsReceived(true)
+        // alert(result)
     }
 
     const updateGenres = (res) => {
@@ -242,10 +259,10 @@ const StreamPair = () => {
             {
                 resultsReceived ? 
                     <StreamPairRes
-                        color='red'
-                        name='Netflix'
-                        link='www.netflix.com'
-                        image={netflix}
+                        color={streamResults.color}
+                        name={streamResults.name}
+                        link={streamResults.link}
+                        image={streamResults.image}
                     /> : 
                     <></>
             }
