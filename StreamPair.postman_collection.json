@@ -214,7 +214,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://{{domain}}/api/movies",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"movies"
+					]
 				},
 				"description": "Sorted by popularity"
 			},
@@ -267,7 +275,17 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://{{domain}}/api/shows/production/{{production_company_name}}",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"shows",
+						"production",
+						"{{production_company_name}}"
+					]
 				},
 				"description": "Sorted by popularity"
 			},
@@ -279,7 +297,17 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://{{domain}}/api/movies/platform/{{platform}}",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"movies",
+						"platform",
+						"{{platform}}"
+					]
 				},
 				"description": "Sorted by popularity"
 			},
@@ -291,7 +319,17 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://{{domain}}/api/shows/platform/{{platform}}",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"shows",
+						"platform",
+						"{{platform}}"
+					]
 				},
 				"description": "Sorted by popularity"
 			},
@@ -303,7 +341,19 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://{{domain}}/api/poster/apikey/{{apikey}}/IMDbID/{{IMDbID}}",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"poster",
+						"apikey",
+						"{{apikey}}",
+						"IMDbID",
+						"{{IMDbID}}"
+					]
 				}
 			},
 			"response": []
@@ -314,7 +364,18 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://{{domain}}/api/movies/number/platform/{{platform}}",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"movies",
+						"number",
+						"platform",
+						"{{platform}}"
+					]
 				}
 			},
 			"response": []
@@ -347,7 +408,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://{{domain}}/api/all",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"all"
+					]
 				}
 			},
 			"response": []
