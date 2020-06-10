@@ -175,6 +175,39 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "GET All Movies and Shows",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Number of Genres per Streaming Platform",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}/api/platform-by-genre/action/apikey/{{apikey}}",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"platform-by-genre",
+						"action",
+						"apikey",
+						"{{apikey}}"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}

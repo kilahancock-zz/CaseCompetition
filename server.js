@@ -7,14 +7,6 @@ const fetch = require('node-fetch');
 const port = 5000;
 app.use(bodyParser.json());
 
-app.get("/api/test", (req, res) => {
-    const testObject = [
-        {id: 1, name: "test1"},
-        {id: 2, name: "test2"}
-    ];
-    res.json(testObject);
-});
-
 //GET userdata from quiz
 const userData = [];
 app.get("/api/userdata", (req, res) => {
