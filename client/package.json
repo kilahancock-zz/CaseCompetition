@@ -15,15 +15,10 @@
     "react-bootstrap-grid-component": "^0.2.5",
     "react-bulma-components": "^3.3.0",
     "react-dom": "^16.13.1",
-<<<<<<< HEAD
-    "react-modal": "^3.11.2",
-    "react-scripts": "3.4.1"
-=======
     "react-input-range": "^1.3.0",
     "react-modal": "^3.11.2",
     "react-scripts": "3.4.1",
     "styled-components": "^5.1.1"
->>>>>>> b4194db494117e24c9a150b71fbbfcf692ae638d
   },
   "scripts": {
     "start": "react-scripts start",

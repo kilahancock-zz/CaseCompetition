@@ -23,10 +23,14 @@ const Provider = props => {
   let urls = [];
   let posters = [];
   async function fetchShows (provider) {
+    if (provider == "Amazon Prime") {
+      provider = "amazon_prime";
+    }
     await axios.get('/api/shows/platform/' + provider)
     .then(res => {
       for (let i = 0; i < 9; i++) {
         shows.push(res.data[i])
+        console.log(res.data[i])
       }
     })
     .then(async () => {
@@ -35,20 +39,15 @@ const Provider = props => {
         .then(res => {
           s['poster'] = res.data
           urls.push(s['poster']);
+          console.log(res.data)
         })
       }
     })
     posters = urls.map(u => (
-      "<Columns.Column><img src=" + u + "alt='hi'/></Columns.Column>"
+      "<img src=" + u + "alt='hi'/>"
     ))
-    for (let i = 0; i < 3; i++) {
-      document.getElementById("post1").insertAdjacentHTML( 'beforeend', posters[i]);
-    }
-    for (let i = 3; i < 6; i++) {
-      document.getElementById("post2").insertAdjacentHTML( 'beforeend', posters[i]);
-    }
-    for (let i = 6; i < 9; i++) {
-      document.getElementById("post3").insertAdjacentHTML( 'beforeend', posters[i]);
+    for (let i = 0; i < 9; i++) {
+      document.getElementById("post").insertAdjacentHTML( 'beforeend', posters[i]);
     }
   }
   return(
@@ -68,14 +67,10 @@ const Provider = props => {
     <div>
         <Modal isOpen={isOpen} onRequestClose={closeModal} contentLabel="Provider Modal">
           <Container>
-            <Button onClick={closeModal}>X</Button>
+            <Button id="close" onClick={closeModal}>X</Button>
             <h2 className="head">Explore {name}</h2>
-            <a href={link}><Button className="sub">Subscribe Now!</Button></a>
-            <Columns id="post1" className="posters">
-            </Columns>
-            <Columns id="post2" className="posters">
-            </Columns>
-            <Columns id="post3" className="posters">
+            <a href={link} target="_blank"><Button className="sub">Subscribe Now!</Button></a>
+            <Columns id="post" className="posters">
             </Columns>
           </Container>
         </Modal>
