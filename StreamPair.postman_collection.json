@@ -1,0 +1,214 @@
+{
+	"info": {
+		"_postman_id": "1b03b4bb-2b9e-44a0-801c-e15e09a87fe9",
+		"name": "StreamPair",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET User Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}/api/userdata",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"userdata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST User Data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}/api/userdata",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"userdata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET All Movies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "Sorted by popularity"
+			},
+			"response": []
+		},
+		{
+			"name": "GET All Shows",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}/api/shows",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"shows"
+					]
+				},
+				"description": "Sorted by popularity"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Movies by Production Company",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}/api/movies/production/{{production_company_name}}",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"movies",
+						"production",
+						"{{production_company_name}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Shows by Production Company",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "Sorted by popularity"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Movies by Streaming Platform",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "Sorted by popularity"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Shows by Streaming Platform",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "Sorted by popularity"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Show or Movie Poster by IMDb ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Number of Movies by Streaming Platform",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Number of Shows by Streaming Platform",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}/api/shows/number/platform/{{platform}}",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"shows",
+						"number",
+						"platform",
+						"{{platform}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET All Movies and Shows",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Number of Genres per Streaming Platform",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}/api/platform-by-genre/action/apikey/{{apikey}}",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"platform-by-genre",
+						"action",
+						"apikey",
+						"{{apikey}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
