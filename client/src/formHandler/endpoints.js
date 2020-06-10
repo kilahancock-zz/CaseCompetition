@@ -11,3 +11,15 @@ export const getNumContent = (platform, option) => {
       });
   });
 }
+
+export const genreByPlatform = (apikey) => {
+  return new Promise((resolve, reject) => {
+    return axios.get(`/api/platform-by-genre/action/apikey/${apikey}`)
+    .then(res => {
+      return resolve(res.data)
+    })
+    .catch(err => {
+      return reject(err.response.data.error)
+    })
+  })
+}
