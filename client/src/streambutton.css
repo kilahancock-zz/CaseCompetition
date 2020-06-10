@@ -1,0 +1,13 @@
+button.stream-button img:hover{
+    opacity: .4 !important;
+}
+
+button.stream-button, img{
+  transition: .2s opacity;
+  cursor: pointer;
+  height: 175px;
+}
+
+.loading-img {
+  height: 70px;
+}
