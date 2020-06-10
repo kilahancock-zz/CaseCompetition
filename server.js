@@ -4,7 +4,7 @@ const db = require('./models');
 const userHandler = require('./handlers/users')
 const bodyParser = require('body-parser');
 const fetch = require('node-fetch');
-
+const port = 5000;
 app.use(bodyParser.json());
 
 app.get("/api/test", (req, res) => {
@@ -189,7 +189,7 @@ app.get('/api/movies/number/platform/:platform', async (req, res) => {
     .then(response => response.json())
     .then(result => {
         numMovies = {
-            'MovieAmount': result.length
+            'Amount': result.length
         };
         res.send(numMovies)
         
@@ -206,13 +206,139 @@ app.get('/api/shows/number/platform/:platform', async (req, res) => {
     .then(response => response.json())
     .then(result => {
         numShows = {
-            'ShowsAmount': result.length
+            'Amount': result.length
         };
         res.send(numShows)
         
     })
 })
 
-const port = 5000;
+//GET all movies and shows
+app.get('/api/all', async (req, res) => {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+    let movies = [];
+    await fetch("https://casecomp.konnectrv.io/movie", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        movies = result;
+    })
+    movies.sort((m, m2) => {return m2.popularity - m.popularity});
+
+    let shows = [];
+    await fetch("https://casecomp.konnectrv.io/show", requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        shows = result;
+    }).catch(error => console.log('error', error))
+    shows.sort((s, s2) => {return s2.popularity - s.popularity});
+
+    moviesAndShows = movies.concat(shows);
+
+    res.send(moviesAndShows);
+})
+
+
+let genreData = [
+    {
+        "genre": "action",
+        "netflix": 26,
+        "hbo": 5,
+        "amazon_prime": 21
+    },
+    {
+        "genre": "romance",
+        "netflix": 14,
+        "hbo": 3,
+        "amazon_prime": 12
+    },
+    {
+        "genre": "thriller",
+        "netflix": 33,
+        "hbo": 5,
+        "amazon_prime": 36
+    },
+    {
+        "genre": "drama",
+        "netflix": 72,
+        "hbo": 11,
+        "amazon_prime": 72
+    },
+    {
+        "genre": "fantasy",
+        "netflix": 18,
+        "hbo": 5,
+        "amazon_prime": 5
+    },
+    {
+        "genre": "horror",
+        "netflix": 14,
+        "hbo": 1,
+        "amazon_prime": 13
+    },
+    {
+        "genre": "western",
+        "netflix": 3,
+        "hbo": 0,
+        "amazon_prime": 5
+    },
+    {
+        "genre": "mystery",
+        "netflix": 26,
+        "hbo": 4,
+        "amazon_prime": 28
+    }
+]
+/* fillGenreData - makes live calculation of the number of TV Shows and Movies 
+                   for each streaming service that match a given genre
+  NOTE -           Results of this function should be sent to a database rather than stored locally.
+                   This function takes a very long time to execute
+*/
+async function fillGenreData() {
+    let apikey = '4a3b711b';
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+    let all;
+    await fetch(`http://localhost:${port}/api/all`, requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        all = result;
+    })
+    genreData.forEach(element => {
+        const calculate = async () => {
+           await asyncForEach(all, async (movie) =>  {
+                id = movie.imdb;
+                await fetch(`https://www.omdbapi.com/?apikey=${apikey}&i=${id}`)
+                .then(response => response.json())
+                .then(omdbMovie => {
+                    if (omdbMovie.Genre.toLowerCase().includes(element.genre)) {
+                        element[movie.streaming_platform[0]]++;
+                        console.log(genreData);
+                    } 
+                })
+            })
+        }
+        calculate();
+    })
+}
+//fillGenreData();
+
+//utility function for executing asynchronous iterations within a forEach loop
+async function asyncForEach(array, callback) {
+    for (let index = 0; index < array.length; index++) {
+      await callback(array[index], index, array);
+    }
+  }
+
+
+app.get('/api/platform-by-genre/:genre/apikey/:apikey', async (req, res) => {
+    res.send(genreData);
+})
+
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
+
