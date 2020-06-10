@@ -182,7 +182,7 @@ const StreamPair = () => {
             </Options>
             <Question>Select three of your favorite TV shows:</Question>
             <Options>
-            {isLoading ? <img src={loading} height={50}/> : (
+            {isLoading ? <img src={loading} className='loading-img' height={50}/> : (
                 <div style={{width: '50%'}}>
                     {shows.map(show =>
                         <StreamButton streamer={show.streaming_platform[0]} height={175} name={show.title} onClick={updateShows} disabled={disabledButtons.showButton} image={show.poster} id={show.id}/>
@@ -192,7 +192,7 @@ const StreamPair = () => {
             </Options>
             <Question>Select three of your favorite movies:</Question>
             <Options>
-                {isLoading ? <img src={loading} height={50}/> : (
+                {isLoading ? <img src={loading} className='loading-img' height={50}/> : (
                     <div style={{width: '50%'}}>
                         {movies.map(movie =>
                             <StreamButton streamer={movie.streaming_platform[0]} height={175} name={movie.title} onClick={updateMovies} disabled={disabledButtons.movieButton} image={movie.poster}/>

@@ -20,19 +20,6 @@ class Home extends Component {
         };
     }
 
-    // const openModal = () => {
-    //     this.setState({
-    //         modalIsOpen: true
-    //     });
-    //     console.log('opening')
-    // }
-
-    // const closeModal = () => {
-    //     this.setState({
-    //         modalIsOpen: false
-    //     });
-    // }
-
     render() {
       const banners = this.state.data.map(obj => (
         <Columns.Column><Provider {...obj} /></Columns.Column>

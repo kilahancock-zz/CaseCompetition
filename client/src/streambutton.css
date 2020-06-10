@@ -7,3 +7,7 @@ button.stream-button, img{
   cursor: pointer;
   height: 175px;
 }
+
+.loading-img {
+  height: 70px;
+}
