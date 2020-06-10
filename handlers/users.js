@@ -35,6 +35,17 @@ function getUser(req, res, next) {
       }
     });
 }
+function getUserById(req, res, next) {
 
+  db.User.find({_id:req.params.id}, function(err, users) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(users);
+    }
+  })
+}
+
+module.exports.getUserById = getUserById;
 module.exports.postUser = postUser;
 module.exports.getUser = getUser;
